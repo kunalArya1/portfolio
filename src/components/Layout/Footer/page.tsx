@@ -1,36 +1,53 @@
+// components/Footer.jsx
+
+import { FaInstagram, FaFacebookF, FaTimes } from "react-icons/fa";
+
 export default function Footer() {
   return (
-    <div className="">
-      <section className="w-[100%] flex justify-between items-center border-y border-[#3a3a3a]  px-20  py-10">
-        <div className="w-[30%]">
-          <h1>Kunal Arya</h1>
-          <p>
-            A modern lightweight WordPressbr theme <br /> with lots of options,
-            making it easy to <br />
-            customize.
+    <div className="bg-[#1f1f1f] text-white">
+      {/* Top Footer */}
+      <section className="w-full flex flex-col md:flex-row justify-between items-start md:items-center border-y border-[#3a3a3a] px-6 md:px-20 py-10 gap-8 md:gap-0">
+        {/* Left - Logo and Description */}
+        <div className="w-full md:w-1/3">
+          <h1 className="text-white font-bold text-2xl mb-2">Kunal Arya</h1>
+          <p className="text-gray-300 text-sm leading-relaxed">
+            A modern lightweight WordPress theme with lots of options, making it
+            easy to customize.
           </p>
         </div>
-        <div className=" flex gap-4">
-          <p>Home</p>
-          <p>Contact us</p>
-          <p>About</p>
-          <p>Blog</p>
+
+        {/* Center - Navigation Links */}
+        <div className="flex flex-col md:flex-row gap-3 text-sm font-semibold text-white">
+          <a href="#">Home</a>
+          <a href="#">Contact Us</a>
+          <a href="#">About</a>
+          <a href="#">Blog</a>
         </div>
-        <div className="flex gap-4">
-          <p>1</p>
-          <p>2</p>
-          <p>3</p>
+
+        {/* Right - Social Icons */}
+        <div className="flex gap-3">
+          <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
+            <FaInstagram className="text-white text-lg" />
+          </div>
+          <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
+            <FaFacebookF className="text-white text-lg" />
+          </div>
+          <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
+            <FaTimes className="text-white text-lg" />
+          </div>
         </div>
       </section>
 
-      {/* Section two */}
-      <section className="py-8 px-20 flex items-center justify-between">
-        <div>
-          <p>© 2024 Kunal Arya. All Rights Reserved.</p>
-        </div>
-        <div className=" flex gap-4">
-          <p>Terms of Use</p>
-          <p>Privacy Policy</p>
+      {/* Bottom Footer */}
+      <section className="py-6 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between text-sm text-gray-400 gap-4 md:gap-0">
+        <p>© 2024 Kunal Arya. All Rights Reserved.</p>
+        <div className="flex gap-4">
+          <a href="#" className="hover:text-white">
+            Terms of Use
+          </a>
+          <a href="#" className="hover:text-white">
+            Privacy Policy
+          </a>
         </div>
       </section>
     </div>
