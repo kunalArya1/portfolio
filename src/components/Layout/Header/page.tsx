@@ -6,10 +6,10 @@ import { Menu, X } from "lucide-react";
 import { FaAngleRight } from "react-icons/fa6";
 
 const navLinks = [
-  { name: "Demos", path: "/" },
-  { name: "Features", path: "/features" },
-  { name: "Reasoning", path: "/reasoning" },
-  { name: "Projects", path: "/projects" },
+  { name: "Home", path: "/" },
+  { name: "Projects", path: "/features" },
+  { name: "Blogs", path: "/reasoning" },
+  { name: "About", path: "/projects" },
   { name: "Contact", path: "/contact" },
 ];
 

@@ -1,6 +1,9 @@
 // components/Footer.jsx
 
 import { FaInstagram, FaFacebookF, FaTimes } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { IoLogoLinkedin } from "react-icons/io5";
+import { FaGithub } from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -27,13 +30,19 @@ export default function Footer() {
         {/* Right - Social Icons */}
         <div className="flex gap-3">
           <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
+            <IoLogoLinkedin className="text-white text-lg" />
+          </div>
+          <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
             <FaInstagram className="text-white text-lg" />
           </div>
           <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
             <FaFacebookF className="text-white text-lg" />
           </div>
           <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
-            <FaTimes className="text-white text-lg" />
+            <FaXTwitter className="text-white text-lg" />
+          </div>
+          <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
+            <FaGithub className="text-white text-lg" />
           </div>
         </div>
       </section>
