@@ -38,9 +38,7 @@ export default function Home() {
         <WorkExperience />
       </section>
       {/* newsletter section */}
-      <section>
-        <NewLetter />
-      </section>
+      <section>{/* <NewLetter /> */}</section>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 export default function NewLetter() {
   return (
-    <section className="w-full bg-[#212121] rounded-xl my-20 px-4 py-12 flex items-center justify-center text-center">
+    <section className="w-[80vw] bg-[#212121] rounded-xl my-20 px-4 py-12 flex items-center justify-center mx-12 md:mx-16 lg:mx-26 text-center">
       <div className="w-full max-w-2xl">
         <h1 className="text-white font-bold text-2xl md:text-4xl mb-4">
           Subscribe to My Newsletter
