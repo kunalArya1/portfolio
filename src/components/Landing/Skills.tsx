@@ -30,16 +30,16 @@ import { RiTailwindCssFill } from "react-icons/ri";
 const devIcons = [
   { src: <TbBrandReact />, alt: "React" },
   { src: <SiNextdotjs />, alt: "Next js" },
-  { src: <SiAppwrite />, alt: "Appwrite" },
   { src: <TbBrandNodejs />, alt: "Node.js" },
   { src: <SiExpress />, alt: "Express" },
   { src: <BiLogoSpringBoot />, alt: "SpringBoot" },
-  { src: <TbBrandThreejs />, alt: "Three.js" },
-  { src: <SiHibernate />, alt: "Blueprint" },
-  { src: <SiHtml5 />, alt: "Hero Icons" },
-  { src: <IoLogoCss3 />, alt: "Three.js" },
-  { src: <RiTailwindCssFill />, alt: "HTML5" },
+  { src: <SiHibernate />, alt: "Hibernate" },
   { src: <SiFlask />, alt: "CSS3" },
+  { src: <SiAppwrite />, alt: "Appwrite" },
+  { src: <SiHtml5 />, alt: "HTML5" },
+  { src: <IoLogoCss3 />, alt: "CSS" },
+  { src: <RiTailwindCssFill />, alt: "Tailwind CSS" },
+  { src: <TbBrandThreejs />, alt: "Three.js" },
 ];
 const designIcons = [
   { src: <IoLogoFigma />, alt: "Adobe XD" },
@@ -47,27 +47,12 @@ const designIcons = [
   { src: <SiAdobexd />, alt: "Figma" },
 ];
 const languageIcons = [
-  {
-    src: <FaJsSquare />,
-    alt: "Adobe XD",
-  },
-  {
-    src: <SiTypescript />,
-    alt: "Photoshop",
-  },
-  {
-    src: <FaJava />,
-    alt: "Figma",
-  },
-  {
-    src: <TbBrandCpp />,
-    alt: "Figma",
-  },
-  {
-    src: <FaPython />,
-    alt: "Figma",
-  },
-  { src: <FaGolang />, alt: "Figma" },
+  { src: <TbBrandCpp />, alt: "Cpp" },
+  { src: <FaJava />, alt: "Java" },
+  { src: <FaPython />, alt: "Pyhton" },
+  { src: <FaGolang />, alt: "Golang" },
+  { src: <FaJsSquare />, alt: "Javascript" },
+  { src: <SiTypescript />, alt: "Typescript" },
 ];
 const dataabseIcons = [
   {
