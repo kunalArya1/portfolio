@@ -1,4 +1,4 @@
-import NewLetter from "@/components/Landing/Newsletter";
+
 import WorkExperience from "@/components/Landing/WorkExp";
 import BestProjects from "@/components/Landing/BestProject";
 import SkillsSection from "@/components/Landing/Skills";

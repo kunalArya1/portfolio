@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { FaFilter, FaSearch } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
-import { FaInstagram, FaFacebookF, FaTimes } from "react-icons/fa";
+import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoLinkedin } from "react-icons/io5";
 import { FaGithub } from "react-icons/fa6";
@@ -13,11 +13,11 @@ const tags = ["React", "Node", "Next.js", "Tailwind", "JavaScript"];
 const authors = ["Kunal Arya", "John Doe", "Jane Smith"];
 const initialBlogs = Array.from({ length: 20 }).map((_, i) => ({
   id: i,
-  title: `Project Title ${i + 1}`,
+  title: `Blog ${i + 1}`,
   author: authors[i % authors.length],
   tags: [tags[i % tags.length]],
   date: `2024-05-${(i % 28) + 1}`,
-  description: "This is a brief description of the project.",
+  description: "This is a brief description of the Blog.",
   image:
     "https://ando.codesupply.co/design/wp-content/uploads/sites/2/2024/09/demo-image-0005-1920x1440.webp",
 }));
@@ -32,7 +32,7 @@ export default function BlogPage() {
   const [visibleCount, setVisibleCount] = useState(6);
 
   useEffect(() => {
-    let filtered = initialBlogs.filter((blog) => {
+    const filtered = initialBlogs.filter((blog) => {
       const matchesSearch =
         blog.title.toLowerCase().includes(search.toLowerCase()) ||
         blog.description.toLowerCase().includes(search.toLowerCase());
@@ -56,7 +56,7 @@ export default function BlogPage() {
       <div className="w-full max-w-4xl mb-10">
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-10 mb-6">
           <div className="h-40 w-40 sm:h-[20vh] sm:w-[20vh] overflow-hidden bg-red-200 rounded-full">
-            <img
+            <Image
               src="./kunal.jpg"
               alt="Kunal Arya"
               className="h-full w-full object-cover"
@@ -195,7 +195,7 @@ export default function BlogPage() {
             className="border border-[#3a3a3a] bg-[#1f1e1e] rounded-lg overflow-hidden"
           >
             <Link href={`/blogs/${blog.title}`}>
-              <img
+              <Image
                 src={blog.image}
                 alt={blog.title}
                 width={400}
@@ -206,7 +206,12 @@ export default function BlogPage() {
             <div className="p-4">
               <div className="flex gap-2 text-sm text-amber-400 mb-2">
                 {blog.tags.map((tag) => (
-                  <span key={tag}>#{tag}</span>
+                  <span
+                    key={tag}
+                    className="p-2 bg-[#363434] rounded-xl font-bold text-white"
+                  >
+                    {tag}
+                  </span>
                 ))}
               </div>
               <h2 className="text-xl font-semibold mb-1">{blog.title}</h2>

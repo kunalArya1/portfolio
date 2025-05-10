@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { FaAngleRight } from "react-icons/fa6";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -36,7 +37,7 @@ export default function Header() {
           {/* Logo */}
           <div className="flex items-center gap-3 text-white text-lg font-semibold">
             <div className="h-8 w-8 bg-amber-400 rounded-sm overflow-hidden">
-              <img
+              <Image
                 src="/logo2.jpg"
                 alt="Kunal Arya"
                 className="w-full h-full object-cover"

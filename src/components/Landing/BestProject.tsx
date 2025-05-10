@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { projectData } from "@/utils/Data/ProjectData";
+import Image from "next/image";
 
 export default function BestProjects() {
   return (
@@ -24,7 +25,7 @@ export default function BestProjects() {
             {/* Left: Image or Dot */}
             <div className="min-w-[40px] flex justify-center items-start pt-2">
               {project.image ? (
-                <img
+                <Image
                   src={project.image}
                   alt={project.title}
                   className="w-[100%] lg:w-40 h-30 object-cover rounded-lg scale-100 lg:hover:scale-140 transition-all duration-100 hover:scale-120"

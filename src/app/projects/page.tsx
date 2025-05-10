@@ -28,7 +28,7 @@ export default function Projects() {
   const [visibleCount, setVisibleCount] = useState(6);
 
   useEffect(() => {
-    let filtered = initialBlogs.filter((blog) => {
+    const filtered = initialBlogs.filter((blog) => {
       const matchesSearch =
         blog.title.toLowerCase().includes(search.toLowerCase()) ||
         blog.description.toLowerCase().includes(search.toLowerCase());
@@ -143,7 +143,7 @@ export default function Projects() {
             key={blog.id}
             className="border border-[#3a3a3a] bg-[#1f1e1e] rounded-lg overflow-hidden"
           >
-            <img
+            <Image
               src={blog.image}
               alt={blog.title}
               width={400}

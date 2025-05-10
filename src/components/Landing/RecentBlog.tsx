@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function RecentBlog() {
@@ -18,7 +19,7 @@ export default function RecentBlog() {
       <div className="max-w-7xl mx-auto border-t border-gray-700 pt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Featured Blog */}
         <div className="relative rounded-lg overflow-hidden group">
-          <img
+          <Image
             src="https://ando.codesupply.co/design/wp-content/uploads/sites/2/2024/09/demo-image-0008-1920x1440.webp" // replace with real path
             alt="Featured"
             className="w-full h-full object-cover absolute inset-0 brightness-75 group-hover:brightness-90 transition"

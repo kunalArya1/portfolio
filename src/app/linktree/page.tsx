@@ -1,13 +1,13 @@
 import React from "react";
 
-type Link = {
-  text: string;
-  url: string;
-};
+// type Link = {
+//   text: string;
+//   url: string;
+// };
 
-interface LinkTreeProps {
-  links: Link[];
-}
+// interface LinkTreeProps {
+//   links: Link[];
+// }
 
 const linkss = [
   { text: "GitHub", url: "https://github.com/your-username" },
@@ -16,7 +16,7 @@ const linkss = [
   { text: "Blog", url: "https://yourblog.com" },
 ];
 
-const LinkTree: React.FC<LinkTreeProps> = ({ links }) => {
+const LinkTree = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gradient-to-r from-blue-500 to-purple-500">
       <div className="bg-white/20 backdrop-blur-lg p-8 rounded-xl shadow-lg max-w-md w-full">

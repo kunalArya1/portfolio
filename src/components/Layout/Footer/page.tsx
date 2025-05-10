@@ -1,6 +1,6 @@
 // components/Footer.jsx
 
-import { FaInstagram, FaFacebookF, FaTimes } from "react-icons/fa";
+import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoLinkedin } from "react-icons/io5";
 import { FaGithub } from "react-icons/fa6";
