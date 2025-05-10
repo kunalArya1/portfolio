@@ -1,5 +1,6 @@
 import { CiLocationOn } from "react-icons/ci";
 import { FaAngleRight } from "react-icons/fa6";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -49,10 +50,12 @@ export default function HeroSection() {
             Developer, builder, and problem-solver with a passion for clean
             code, product thinking, and scalable tech.
           </h4>
-          <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-full transition duration-300">
-            Get in Touch
-            <FaAngleRight className=" inline-block font-bold" />
-          </button>
+          <Link href="/linktree">
+            <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-full transition duration-300 cursor-pointer">
+              Get in Touch
+              <FaAngleRight className=" inline-block font-bold" />
+            </button>
+          </Link>
         </div>
       </div>
     </section>

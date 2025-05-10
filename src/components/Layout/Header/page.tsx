@@ -10,7 +10,7 @@ const navLinks = [
   { name: "Home", path: "/" },
   { name: "Projects", path: "/projects" },
   { name: "Blogs", path: "/blogs" },
-  { name: "LinkTree", path: "/linktree" },
+  { name: "Github", path: "/github" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -40,6 +40,8 @@ export default function Header() {
               <Image
                 src="/logo2.jpg"
                 alt="Kunal Arya"
+                width={100}
+                height={100}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -63,9 +65,16 @@ export default function Header() {
 
           {/* Resume */}
           <div className="hidden lg:flex items-center gap-4 text-white">
-            <button className="bg-[#7728bc] text-white px-5 py-2 rounded-2xl">
-              Resume <FaAngleRight className=" inline-block" />
-            </button>
+            <Link
+              href={
+                "https://drive.google.com/file/d/1RqAGVhchh9y99SNKcEVXFAX6dCCEWmPn/view?usp=sharing"
+              }
+              target="blank"
+            >
+              <button className="bg-[#7728bc] text-white px-5 py-2 rounded-2xl cursor-pointer">
+                Resume <FaAngleRight className=" inline-block" />
+              </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}

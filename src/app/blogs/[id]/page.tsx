@@ -285,6 +285,8 @@ const Hero = () => {
               <div className="flex items-center gap-4 md:gap-10 mb-4">
                 <div className="h-[8vh] w-[8vh] md:h-[10vh] md:w-[10vh] rounded-[50%] overflow-hidden">
                   <Image
+                  height={100}
+                  width={100}
                     src="/kunal.jpg"
                     alt="Kunal Arya"
                     className="w-full h-full object-cover"

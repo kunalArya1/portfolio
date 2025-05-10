@@ -18,8 +18,7 @@ const initialBlogs = Array.from({ length: 20 }).map((_, i) => ({
   tags: [tags[i % tags.length]],
   date: `2024-05-${(i % 28) + 1}`,
   description: "This is a brief description of the Blog.",
-  image:
-    "https://ando.codesupply.co/design/wp-content/uploads/sites/2/2024/09/demo-image-0005-1920x1440.webp",
+  image: "/kunal.jpg",
 }));
 
 export default function BlogPage() {
@@ -57,8 +56,10 @@ export default function BlogPage() {
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-10 mb-6">
           <div className="h-40 w-40 sm:h-[20vh] sm:w-[20vh] overflow-hidden bg-red-200 rounded-full">
             <Image
-              src="./kunal.jpg"
+              src="/kunal.jpg"
               alt="Kunal Arya"
+              height={100}
+              width={100}
               className="h-full w-full object-cover"
             />
           </div>

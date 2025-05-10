@@ -15,8 +15,8 @@ export default function Footer() {
         <div className="w-full md:w-1/3">
           <h1 className="text-white font-bold text-2xl mb-2">Kunal Arya</h1>
           <p className="text-gray-300 text-sm leading-relaxed">
-            A modern lightweight WordPress theme with lots of options, making it
-            easy to customize.
+            Developer, builder, and problem-solver with a passion for clean
+            code, product thinking, and scalable tech..
           </p>
         </div>
 

@@ -20,7 +20,9 @@ export default function RecentBlog() {
         {/* Featured Blog */}
         <div className="relative rounded-lg overflow-hidden group">
           <Image
-            src="https://ando.codesupply.co/design/wp-content/uploads/sites/2/2024/09/demo-image-0008-1920x1440.webp" // replace with real path
+            width={100}
+            height={100}
+            src="/kunal.jpg" // replace with real path
             alt="Featured"
             className="w-full h-full object-cover absolute inset-0 brightness-75 group-hover:brightness-90 transition"
           />

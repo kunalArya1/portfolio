@@ -26,6 +26,8 @@ export default function BestProjects() {
             <div className="min-w-[40px] flex justify-center items-start pt-2">
               {project.image ? (
                 <Image
+                  width={100}
+                  height={100}
                   src={project.image}
                   alt={project.title}
                   className="w-[100%] lg:w-40 h-30 object-cover rounded-lg scale-100 lg:hover:scale-140 transition-all duration-100 hover:scale-120"

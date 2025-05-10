@@ -3,8 +3,7 @@ import { Project } from "@/types/ProjectTypes";
 export const projectData: Project[] = [
   {
     id: 1,
-    image:
-      "https://ando.codesupply.co/design/wp-content/uploads/sites/2/2024/09/demo-image-0004-1920x1440.webp", // Replace with actual path
+    image: "/kunal.jpg", // Replace with actual path
     tags: ["Design"],
     title: "Victory Mode",
     description:
@@ -12,8 +11,7 @@ export const projectData: Project[] = [
   },
   {
     id: 2,
-    image:
-      "https://ando.codesupply.co/design/wp-content/uploads/sites/2/2024/09/demo-image-0004-1920x1440.webp",
+    image: "/kunal.jpg",
     tags: ["Branding", "Product Design"],
     title: "Breathing Sound Experience",
     description:
@@ -21,8 +19,7 @@ export const projectData: Project[] = [
   },
   {
     id: 3,
-    image:
-      "https://ando.codesupply.co/design/wp-content/uploads/sites/2/2024/09/demo-image-0004-1920x1440.webp",
+    image: "/kunal.jpg",
     tags: ["Research"],
     title: "Amore Pacific",
     description:
