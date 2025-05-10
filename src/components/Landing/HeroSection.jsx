@@ -22,7 +22,9 @@ export default function HeroSection() {
           {/* Name & Bio */}
           <h1 className="text-2xl font-bold mb-2">Kunal Arya</h1>
           <h4 className="text-gray-400 text-base mb-4">
-            UI Designer passionate about crafting creative digital experiences.
+            Full-stack developer passionate about <br />
+            building smooth and scalable web <br />
+            experiences.
           </h4>
 
           {/* Status & Location */}
@@ -32,7 +34,7 @@ export default function HeroSection() {
               Available
             </span>
             <span className="flex items-center gap-1">
-              <CiLocationOn /> Bhopal, India
+              <CiLocationOn /> Bengaluru, India
             </span>
           </div>
         </div>
@@ -40,12 +42,12 @@ export default function HeroSection() {
         {/* Right: Introduction */}
         <div className="text-center md:text-left max-w-2xl">
           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-4">
-            Hello! I'm Kunal Arya <br />
-            Modern Creative Designer
+            Hello! I’m Kunal Arya <br /> Turning Ideas into Code and Code into
+            Impact
           </h1>
           <h4 className="text-gray-400 text-lg mb-6">
-            I am a design leader, advisor, and operator with expertise in brand,
-            product, and design systems.
+            Developer, builder, and problem-solver with a passion for clean
+            code, product thinking, and scalable tech.
           </h4>
           <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-full transition duration-300">
             Get in Touch

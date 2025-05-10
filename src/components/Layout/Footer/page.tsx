@@ -4,6 +4,7 @@ import { FaInstagram, FaFacebookF, FaTimes } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoLinkedin } from "react-icons/io5";
 import { FaGithub } from "react-icons/fa6";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -28,21 +29,37 @@ export default function Footer() {
         </div>
 
         {/* Right - Social Icons */}
+        {/* linkedin */}
         <div className="flex gap-3">
-          <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
-            <IoLogoLinkedin className="text-white text-lg" />
-          </div>
+          <Link
+            target="blank"
+            href={"https://www.linkedin.com/in/kunal-kumar-arya/"}
+          >
+            <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
+              <IoLogoLinkedin className="text-white text-lg" />
+            </div>
+          </Link>
+          {/* twitter */}
+          <Link target="blank" href={"https://x.com/iamkunalarya"}>
+            <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
+              <FaXTwitter className="text-white text-lg" />
+            </div>
+          </Link>
+          {/* Github */}
+          <Link target="blank" href={"https://github.com/kunalArya1"}>
+            <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
+              <FaGithub className="text-white text-lg" />
+            </div>
+          </Link>
+
+          {/* Instagram */}
           <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
             <FaInstagram className="text-white text-lg" />
           </div>
+
+          {/* Facebook */}
           <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
             <FaFacebookF className="text-white text-lg" />
-          </div>
-          <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
-            <FaXTwitter className="text-white text-lg" />
-          </div>
-          <div className="w-10 h-10 bg-[#3d3d3d] rounded-full flex items-center justify-center hover:bg-[#594ead] cursor-pointer transition">
-            <FaGithub className="text-white text-lg" />
           </div>
         </div>
       </section>
