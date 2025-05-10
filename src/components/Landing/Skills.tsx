@@ -1,66 +1,86 @@
 "use client";
 
 import Image from "next/image";
+import { FaJsSquare, FaJava, FaPython } from "react-icons/fa";
+import { SiTypescript } from "react-icons/si";
+import {
+  TbBrandCpp,
+  TbBrandReact,
+  TbBrandThreejs,
+  TbBrandNodejs,
+} from "react-icons/tb";
+import { FaGolang } from "react-icons/fa6";
+import {
+  SiMysql,
+  SiMongodb,
+  SiAdobephotoshop,
+  SiAdobexd,
+  SiNextdotjs,
+  SiAppwrite,
+  SiExpress,
+  SiHibernate,
+  SiHtml5,
+  SiFlask,
+} from "react-icons/si";
+import { BiLogoPostgresql, BiLogoSpringBoot } from "react-icons/bi";
+import { IoLogoFigma } from "react-icons/io5";
+import { IoLogoCss3 } from "react-icons/io";
+import { RiTailwindCssFill } from "react-icons/ri";
 
 const devIcons = [
-  {
-    src: "/kunal.jpg",
-    alt: "React",
-  },
-  { src: "/icons/java.png", alt: "Java" },
-  { src: "/icons/javascript.png", alt: "JavaScript" },
-  { src: "/icons/nodejs.png", alt: "Node.js" },
-  { src: "/icons/mongodb.png", alt: "MongoDB" },
-  { src: "/icons/mysql.png", alt: "MySQL" },
-  { src: "/icons/github.png", alt: "GitHub" },
-  { src: "/icons/blueprint.png", alt: "Blueprint" },
-  { src: "/icons/heroicons.png", alt: "Hero Icons" },
-  { src: "/icons/threejs.png", alt: "Three.js" },
-  { src: "/icons/html5.png", alt: "HTML5" },
-  { src: "/icons/css3.png", alt: "CSS3" },
+  { src: <TbBrandReact />, alt: "React" },
+  { src: <SiNextdotjs />, alt: "Next js" },
+  { src: <SiAppwrite />, alt: "Appwrite" },
+  { src: <TbBrandNodejs />, alt: "Node.js" },
+  { src: <SiExpress />, alt: "Express" },
+  { src: <BiLogoSpringBoot />, alt: "SpringBoot" },
+  { src: <TbBrandThreejs />, alt: "Three.js" },
+  { src: <SiHibernate />, alt: "Blueprint" },
+  { src: <SiHtml5 />, alt: "Hero Icons" },
+  { src: <IoLogoCss3 />, alt: "Three.js" },
+  { src: <RiTailwindCssFill />, alt: "HTML5" },
+  { src: <SiFlask />, alt: "CSS3" },
 ];
-
 const designIcons = [
-  { src: "/icons/xd.png", alt: "Adobe XD" },
-  { src: "/icons/photoshop.png", alt: "Photoshop" },
-  { src: "/icons/figma.png", alt: "Figma" },
+  { src: <IoLogoFigma />, alt: "Adobe XD" },
+  { src: <SiAdobephotoshop />, alt: "Photoshop" },
+  { src: <SiAdobexd />, alt: "Figma" },
 ];
 const languageIcons = [
   {
-    src: "/kunal.jpg",
+    src: <FaJsSquare />,
     alt: "Adobe XD",
   },
   {
-    src: "/kunal.jpg",
+    src: <SiTypescript />,
     alt: "Photoshop",
   },
   {
-    src: "/kunal.jpg",
+    src: <FaJava />,
     alt: "Figma",
   },
   {
-    src: "/kunal.jpg",
+    src: <TbBrandCpp />,
     alt: "Figma",
   },
   {
-    src: "/kunal.jpg",
+    src: <FaPython />,
     alt: "Figma",
   },
-  { src: "/icons/figma.png", alt: "Figma" },
+  { src: <FaGolang />, alt: "Figma" },
 ];
-
 const dataabseIcons = [
   {
-    src: "/kunal.jpg",
-    alt: "Adobe XD",
+    src: <SiMysql />,
+    alt: "Mysql",
   },
   {
-    src: "/kunal.jpg",
-    alt: "Photoshop",
+    src: <SiMongodb />,
+    alt: "MongoDB",
   },
   {
-    src: "/kunal.jpg",
-    alt: "Figma",
+    src: <BiLogoPostgresql />,
+    alt: "PostgressSQL",
   },
 ];
 
@@ -75,21 +95,16 @@ export default function SkillsSection() {
           skills, interests, passion and hobbies
         </p>
 
-        {/* Database Section */}
+        {/* Language Section */}
         <div className="my-9">
           <div className="inline-block border-2 border-white rounded-md px-4 py-1 mb-4 text-lg font-medium">
             Language
           </div>
           <div className="flex flex-wrap justify-start gap-6">
             {languageIcons.map((icon, idx) => (
-              <Image
-                width={100}
-                height={100}
-                key={idx}
-                src={icon.src}
-                alt={icon.alt}
-                className="w-16 h-12 sm:w-14 sm:h-14 object-cover transition-transform hover:scale-110"
-              />
+              <div className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4">
+                {icon.src}
+              </div>
             ))}
           </div>
         </div>
@@ -100,14 +115,9 @@ export default function SkillsSection() {
           </div>
           <div className="flex flex-wrap justify-start gap-6">
             {devIcons.map((icon, idx) => (
-              <Image
-                width={100}
-                height={100}
-                key={idx}
-                src={icon.src}
-                alt={icon.alt}
-                className="w-12 h-12 sm:w-14 sm:h-14 object-contain transition-transform hover:scale-110"
-              />
+              <div className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4">
+                {icon.src}
+              </div>
             ))}
           </div>
         </div>
@@ -119,14 +129,9 @@ export default function SkillsSection() {
           </div>
           <div className="flex flex-wrap justify-start gap-6">
             {designIcons.map((icon, idx) => (
-              <Image
-                width={100}
-                height={100}
-                key={idx}
-                src={icon.src}
-                alt={icon.alt}
-                className="w-12 h-12 sm:w-14 sm:h-14 object-contain transition-transform hover:scale-110"
-              />
+              <div className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4">
+                {icon.src}
+              </div>
             ))}
           </div>
         </div>
@@ -138,14 +143,9 @@ export default function SkillsSection() {
           </div>
           <div className="flex flex-wrap justify-start gap-6">
             {dataabseIcons.map((icon, idx) => (
-              <Image
-                width={100}
-                height={100}
-                key={idx}
-                src={icon.src}
-                alt={icon.alt}
-                className="w-18 h-12 sm:w-14 sm:h-14 object-cover transition-transform hover:scale-110"
-              />
+              <div className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4">
+                {icon.src}
+              </div>
             ))}
           </div>
         </div>

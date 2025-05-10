@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className=" h-full w-full bg-black ">
+      <body className=" h-full w-full bg-black overflow-x-hidden ">
         <Header />
         {children}
         <NewLetter />
