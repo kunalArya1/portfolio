@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { FaJsSquare, FaJava, FaPython } from "react-icons/fa";
 import { SiTypescript } from "react-icons/si";
 import {
@@ -87,7 +86,10 @@ export default function SkillsSection() {
           </div>
           <div className="flex flex-wrap justify-start gap-6">
             {languageIcons.map((icon, idx) => (
-              <div className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4">
+              <div
+                key={idx}
+                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4"
+              >
                 {icon.src}
               </div>
             ))}
@@ -100,7 +102,10 @@ export default function SkillsSection() {
           </div>
           <div className="flex flex-wrap justify-start gap-6">
             {devIcons.map((icon, idx) => (
-              <div className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4">
+              <div
+                key={idx}
+                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4"
+              >
                 {icon.src}
               </div>
             ))}
@@ -114,7 +119,10 @@ export default function SkillsSection() {
           </div>
           <div className="flex flex-wrap justify-start gap-6">
             {designIcons.map((icon, idx) => (
-              <div className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4">
+              <div
+                key={idx}
+                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4"
+              >
                 {icon.src}
               </div>
             ))}
@@ -128,22 +136,15 @@ export default function SkillsSection() {
           </div>
           <div className="flex flex-wrap justify-start gap-6">
             {dataabseIcons.map((icon, idx) => (
-              <div className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4">
+              <div
+                key={idx}
+                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4"
+              >
                 {icon.src}
               </div>
             ))}
           </div>
         </div>
-
-        {/* Back to Top
-        <div className="mt-12">
-          <a
-            href="#top"
-            className="text-sm text-white underline hover:text-blue-400"
-          >
-            BACK TO TOP ☝️
-          </a>
-        </div> */}
       </div>
     </section>
   );
