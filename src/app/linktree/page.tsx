@@ -53,7 +53,7 @@ export default function LinkTree() {
   const handleShare = async () => {
     const currentUrl = window.location.href;
     const shareData = {
-      title: "@TheRock LinkTree",
+      title: "@KunalArya LinkTree",
       text: "Check out this LinkTree!",
       url: currentUrl,
     };
