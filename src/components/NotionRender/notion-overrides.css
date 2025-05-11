@@ -1,0 +1,386 @@
+/* Hide Notion page properties */
+.notion-collection-row-property,
+.notion-property-title,
+.notion-property,
+.notion-page-info-container,
+.notion-page-header,
+.notion-header {
+  display: none !important;
+}
+
+/* If the above selectors don't work, you might need more specific ones */
+/* These target the specific metadata you showed in the screenshot */
+.notion-property[data-property-name="created at"],
+.notion-property[data-property-name="Date"],
+.notion-property[data-property-name="Published"],
+.notion-property[data-property-name="slug"],
+.notion-property[data-property-name="status"] {
+  display: none !important;
+}
+
+/* Hide the whole property section at the top if needed */
+.notion-page-content > div:first-child {
+  display: none !important;
+}
+
+/* Alternative solution: Hide all properties but keep specific ones */
+/*
+.notion-collection-row-property {
+  display: none !important;
+}
+.notion-collection-row-property[data-property-name="Title"] {
+  display: block !important;
+}
+*/
+
+/* Make sure content appears normally */
+.notion-page-content-inner {
+  margin-top: 0;
+}
+
+/* /// */
+/* ===========================================
+   NOTION CUSTOM STYLING
+   =========================================== */
+
+/* 1. Hide metadata elements we don't want */
+/* .notion-collection-row-property,
+.notion-property-title,
+.notion-property,
+.notion-page-info-container,
+.notion-page-header,
+.notion-header {
+  display: none !important;
+}
+
+/* Target specific properties to hide */
+/* .notion-property[data-property-name="created at"],
+.notion-property[data-property-name="Date"],
+.notion-property[data-property-name="Published"],
+.notion-property[data-property-name="slug"],
+.notion-property[data-property-name="status"] {
+  display: none !important;
+} */
+*/
+
+/* 2. Typography Customization */
+.notion-page-content {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  line-height: 1.6;
+}
+
+/* Headings */
+.notion-h1 {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  color: #ffffff !important;
+}
+
+.notion-h2 {
+  font-size: 2rem !important;
+  font-weight: 600 !important;
+  margin-top: 1.8rem !important;
+  margin-bottom: 0.8rem !important;
+  color: #1f2937 !important;
+}
+
+.notion-h3 {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.6rem !important;
+  color: #374151 !important;
+}
+
+/* Paragraph text */
+.notion-text {
+  font-size: 1.125rem !important;
+  margin-bottom: 1.25rem !important;
+  color: #949597 !important;
+}
+
+/* 3. Callout Customization */
+.notion-callout {
+  padding: 1.25rem !important;
+  border-radius: 0.5rem !important;
+  margin: 1.5rem 0 !important;
+  border: none !important;
+}
+
+/* Default callout */
+.notion-callout {
+  background-color: #f3f4f6 !important;
+  border-left: 4px solid #d1d5db !important;
+}
+
+/* Info callout - light blue */
+.notion-callout[data-callout-emoji="ℹ️"],
+.notion-callout[data-callout-emoji="💡"] {
+  background-color: #050505 !important;
+  border-left: 4px solid #38bdf8 !important;
+}
+
+/* Warning callout - yellow/orange */
+
+/* .notion-callout[data-callout-emoji="⚠️"],
+.notion-callout[data-callout-emoji="🔔"] {
+  background-color: #fef9c3 !important;
+  border-left: 4px solid #facc15 !important;
+} */
+
+/* Danger/error callout - red */
+
+/* .notion-callout[data-callout-emoji="❌"],
+.notion-callout[data-callout-emoji="🚫"] {
+  background-color: #fee2e2 !important;
+  border-left: 4px solid #f87171 !important;
+} */
+
+/* Success callout - green */
+
+/* .notion-callout[data-callout-emoji="✅"],
+.notion-callout[data-callout-emoji="🟢"] {
+  background-color: #dcfce7 !important;
+  border-left: 4px solid #4ade80 !important;
+} */
+
+/* Callout icon */
+
+/* .notion-callout__icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  margin-right: 0.75rem !important;
+} */
+
+/* Callout text */
+
+/* .notion-callout__content {
+  font-size: 1rem !important;
+  color: #374151 !important;
+} */
+
+/* 4. Code Block Styling */
+
+/* .notion-code {
+  background: #282c34 !important;
+  border-radius: 0.5rem !important;
+  padding: 1rem !important;
+  margin: 1.5rem 0 !important;
+  font-family: "Fira Code", monospace !important;
+} */
+
+/* .notion-code-copy {
+  top: 0.75rem !important;
+  right: 0.75rem !important;
+  color: #9ca3af !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.25rem !important;
+  padding: 0.25rem 0.5rem !important;
+} */
+
+/* 5. Lists Styling */
+/* .notion-list {
+  padding-left: 1.25rem !important;
+  margin-bottom: 1.25rem !important;
+} */
+
+/* .notion-list-item {
+  padding: 0.25rem 0 !important;
+  margin: 0 !important;
+} */
+
+/* Ordered lists */
+/* .notion-list.notion-list-numbered {
+  list-style-type: decimal !important;
+} */
+
+/* Unordered lists */
+/* .notion-list.notion-list-disc {
+  list-style-type: disc !important;
+} */
+
+/* 6. Images & Media */
+
+/* .notion-asset-wrapper {
+  margin: 2rem 0 !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+} */
+
+/* .notion-asset-wrapper img {
+  width: 100% !important;
+  object-fit: cover !important;
+} */
+
+/* Image captions */
+/* .notion-image-caption {
+  color: #6b7280 !important;
+  font-size: 0.875rem !important;
+  text-align: center !important;
+  margin-top: 0.5rem !important;
+} */
+
+/* 7. Tables */
+/* .notion-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1.5rem 0 !important;
+  overflow: hidden !important;
+  border-radius: 0.5rem !important;
+} */
+
+/* .notion-table-header {
+  background-color: #f3f4f6 !important;
+  font-weight: 600 !important;
+} */
+
+/* .notion-table-header-cell {
+  padding: 0.75rem 1rem !important;
+  border-bottom: 2px solid #e5e7eb !important;
+  text-align: left !important;
+} */
+
+/* .notion-table-cell {
+  padding: 0.75rem 1rem !important;
+  border-bottom: 1px solid #e5e7eb !important;
+} */
+
+/* .notion-table-row:nth-child(even) {
+  background-color: #f9fafb !important;
+} */
+
+/* 8. Blockquotes */
+/* .notion-quote {
+  border-left: 4px solid #9ca3af !important;
+  padding-left: 1rem !important;
+  margin: 1.5rem 0 !important;
+  color: #4b5563 !important;
+  font-style: italic !important;
+} */
+
+/* 9. Toggle Lists */
+/* .notion-toggle {
+  margin: 0.75rem 0 !important;
+} */
+
+/* .notion-toggle-summary {
+  cursor: pointer !important;
+  font-weight: 500 !important;
+  color: #374151 !important;
+  padding: 0.5rem 0 !important;
+} */
+
+/* 10. Divider */
+/* .notion-hr {
+  border: none !important;
+  border-top: 1px solid #e5e7eb !important;
+  margin: 2rem 0 !important;
+} */
+
+/* 11. Links */
+/* .notion-link {
+  color: #2563eb !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+  transition: color 0.2s ease !important;
+} */
+
+/* .notion-link:hover {
+  color: #1d4ed8 !important;
+} */
+
+/* 12. Page Layout and Spacing */
+/* .notion-page-content-inner {
+  max-width: 800px !important;
+  margin: 0 auto !important;
+  padding: 2rem 1rem !important;
+} */
+
+/* 13. Dark Mode Support (if needed) */
+@media (prefers-color-scheme: dark) {
+  .notion-app.dark-mode .notion-page-content {
+    color: #e5e7eb !important;
+    background-color: #111827 !important;
+  }
+
+  .notion-app.dark-mode .notion-h1 {
+    color: #f9fafb !important;
+  }
+
+  .notion-app.dark-mode .notion-h2,
+  .notion-app.dark-mode .notion-h3 {
+    color: #f3f4f6 !important;
+  }
+
+  .notion-app.dark-mode .notion-text {
+    color: #d1d5db !important;
+  }
+
+  /* Dark mode callouts */
+  .notion-app.dark-mode .notion-callout {
+    background-color: #1f2937 !important;
+    border-left-color: #4b5563 !important;
+  }
+
+  /* Dark mode tables */
+  .notion-app.dark-mode .notion-table-header {
+    background-color: #374151 !important;
+  }
+
+  .notion-app.dark-mode .notion-table-row:nth-child(even) {
+    background-color: #1f2937 !important;
+  }
+
+  .notion-app.dark-mode .notion-table-cell {
+    border-bottom-color: #4b5563 !important;
+  }
+
+  /* Dark mode links */
+  .notion-app.dark-mode .notion-link {
+    color: #60a5fa !important;
+  }
+
+  .notion-app.dark-mode .notion-link:hover {
+    color: #93c5fd !important;
+  }
+}
+
+/* 14. Responsive Adjustments */
+@media (max-width: 768px) {
+  .notion-page-content-inner {
+    padding: 1rem !important;
+  }
+
+  .notion-h1 {
+    font-size: 2rem !important;
+  }
+
+  .notion-h2 {
+    font-size: 1.75rem !important;
+  }
+
+  .notion-h3 {
+    font-size: 1.25rem !important;
+  }
+
+  .notion-text {
+    font-size: 1rem !important;
+  }
+}
+
+/* 15. Specific Overrides for Metadata Containers */
+/* Hide the whole property section at the top */
+.notion-page-content > div:first-child {
+  display: none !important;
+}
+
+/* Make sure content appears normally */
+.notion-page-content-inner {
+  margin-top: 0 !important;
+}
