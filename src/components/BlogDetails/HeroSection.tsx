@@ -3,13 +3,18 @@ import Link from "next/link";
 import { FC } from "react";
 
 interface HeroProps {
-  category: string;
+  id: string;
   title: string;
+  slug: string;
+  Author: string;
+  ReadTime: string;
   date: string;
-  author: string;
-  description: string;
+  blocks: any;
+  pageId: string;
+  Description: string;
   tags: string[];
-  imageUrl: string;
+  coverImage: string;
+  category: string;
 }
 
 export const HeroSection: FC<HeroProps> = (cate) => {
@@ -21,12 +26,13 @@ export const HeroSection: FC<HeroProps> = (cate) => {
           Home
         </Link>
         <span className="mx-2">›</span>
-        <Link
+        {/* <Link
           href={`/category/${cate.category.toLowerCase()}`}
           className="hover:underline capitalize"
         >
           {cate.category}
-        </Link>
+        </Link> */}
+        {cate.category}
         <span className="mx-2">›</span>
         <span className="text-gray-300">{cate.title}</span>
       </div>
@@ -35,13 +41,13 @@ export const HeroSection: FC<HeroProps> = (cate) => {
         {/* Left Text Content */}
         <div className="flex-1">
           <p className="text-sm mb-2 text-gray-400">
-            <span className="font-semibold text-white">{cate.author}</span> on{" "}
+            <span className="font-semibold text-white">{cate.Author}</span> on
             {cate.date}
           </p>
           <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
             {cate.title}
           </h1>
-          <p className="text-lg text-gray-300 mb-6">{cate.description}</p>
+          <p className="text-lg text-gray-300 mb-6">{cate.Description}</p>
 
           {/* Tags */}
           <div className="flex flex-wrap gap-3">
@@ -60,7 +66,7 @@ export const HeroSection: FC<HeroProps> = (cate) => {
         <div className="w-full lg:w-[45%]">
           <div className="overflow-hidden rounded-2xl w-full aspect-[16/12]">
             <Image
-              src={cate.imageUrl}
+              src={cate.coverImage}
               alt="Blog hero image"
               width={800}
               height={500}
