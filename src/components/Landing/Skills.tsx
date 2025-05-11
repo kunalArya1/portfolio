@@ -1,6 +1,13 @@
 "use client";
 
-import { FaJsSquare, FaJava, FaPython } from "react-icons/fa";
+import {
+  FaJsSquare,
+  FaJava,
+  FaPython,
+  FaGithubSquare,
+  FaGitSquare,
+  FaAws,
+} from "react-icons/fa";
 import { SiTypescript } from "react-icons/si";
 import {
   TbBrandCpp,
@@ -12,19 +19,24 @@ import { FaGolang } from "react-icons/fa6";
 import {
   SiMysql,
   SiMongodb,
-  SiAdobephotoshop,
-  SiAdobexd,
   SiNextdotjs,
   SiAppwrite,
   SiExpress,
   SiHibernate,
   SiHtml5,
   SiFlask,
+  SiPostman,
+  SiIntellijidea,
+  SiPycharm,
+  SiDocker,
+  SiKubernetes,
+  SiJenkins,
 } from "react-icons/si";
 import { BiLogoPostgresql, BiLogoSpringBoot } from "react-icons/bi";
 import { IoLogoFigma } from "react-icons/io5";
 import { IoLogoCss3 } from "react-icons/io";
 import { RiTailwindCssFill } from "react-icons/ri";
+import { VscVscode } from "react-icons/vsc";
 
 const devIcons = [
   { src: <TbBrandReact />, alt: "React" },
@@ -41,9 +53,14 @@ const devIcons = [
   { src: <TbBrandThreejs />, alt: "Three.js" },
 ];
 const designIcons = [
+  { src: <VscVscode />, alt: "Photoshop" },
+  { src: <SiPostman />, alt: "Figma" },
+  { src: <FaGithubSquare />, alt: "Figma" },
+  { src: <FaGitSquare />, alt: "Figma" },
+  { src: <SiIntellijidea />, alt: "Figma" },
+  { src: <SiPycharm />, alt: "Figma" },
+  // { src: <FaGithubSquare />, alt: "Figma" },
   { src: <IoLogoFigma />, alt: "Adobe XD" },
-  { src: <SiAdobephotoshop />, alt: "Photoshop" },
-  { src: <SiAdobexd />, alt: "Figma" },
 ];
 const languageIcons = [
   { src: <TbBrandCpp />, alt: "Cpp" },
@@ -65,6 +82,25 @@ const dataabseIcons = [
   {
     src: <BiLogoPostgresql />,
     alt: "PostgressSQL",
+  },
+];
+
+const devOpsIcons = [
+  {
+    src: <FaAws />,
+    alt: "Aws",
+  },
+  {
+    src: <SiDocker />,
+    alt: "Docker",
+  },
+  {
+    src: <SiKubernetes />,
+    alt: "Kubernetes",
+  },
+  {
+    src: <SiJenkins />,
+    alt: "Jenkins",
   },
 ];
 
@@ -112,10 +148,27 @@ export default function SkillsSection() {
           </div>
         </div>
 
-        {/* Designing Section */}
-        <div>
+        {/* Database Section */}
+        <div className="mt-9">
           <div className="inline-block border-2 border-white rounded-md px-4 py-1 mb-4 text-lg font-medium">
-            designing
+            Database
+          </div>
+          <div className="flex flex-wrap justify-start gap-6">
+            {dataabseIcons.map((icon, idx) => (
+              <div
+                key={idx}
+                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4"
+              >
+                {icon.src}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tools Section */}
+        <div>
+          <div className="inline-block border-2 border-white rounded-md px-4 py-1 my-8 text-lg font-medium">
+            Tools
           </div>
           <div className="flex flex-wrap justify-start gap-6">
             {designIcons.map((icon, idx) => (
@@ -129,13 +182,13 @@ export default function SkillsSection() {
           </div>
         </div>
 
-        {/* Database Section */}
-        <div className="mt-9">
-          <div className="inline-block border-2 border-white rounded-md px-4 py-1 mb-4 text-lg font-medium">
-            Database
+        {/* DevOps Section */}
+        <div>
+          <div className="inline-block border-2 border-white rounded-md px-4 py-1 my-8 text-lg font-medium">
+            DevOps
           </div>
           <div className="flex flex-wrap justify-start gap-6">
-            {dataabseIcons.map((icon, idx) => (
+            {devOpsIcons.map((icon, idx) => (
               <div
                 key={idx}
                 className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4"
