@@ -11,7 +11,7 @@ const navLinks = [
   { name: "Projects", path: "/projects" },
   { name: "Blogs", path: "/blogs" },
   { name: "Github", path: "/github" },
-  { name: "Contact", path: "/contact" },
+  { name: "Connect", path: "/connect" },
 ];
 
 export default function Header() {
