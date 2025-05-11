@@ -10,16 +10,19 @@
   },
   "dependencies": {
     "@notionhq/client": "^3.0.1",
+    "@reduxjs/toolkit": "^2.8.1",
     "classnames": "^2.5.1",
     "font-awesome": "^4.7.0",
     "gsap": "^3.13.0",
     "lucide-react": "^0.508.0",
     "next": "15.3.2",
+    "next-redux-wrapper": "^8.1.0",
     "notion-client": "^7.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
-    "react-notion-x": "^7.3.0"
+    "react-notion-x": "^7.3.0",
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

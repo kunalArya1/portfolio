@@ -14,12 +14,15 @@ interface Post {
   description: string;
 }
 
-interface PostDetail extends Omit<Post, "coverImage" | "tags" | "description"> {
+interface PostDetail extends Post {
   blocks: any; // Type for recordMap from notion-client
   pageId: string;
+  category: string;
 }
 
 // Initialize the Notion client
+// console.log(process.env.NOTION_DATABASE_ID);
+
 const notion = new Client({
   auth: process.env.NOTION_API_KEY as string,
 });
@@ -85,7 +88,7 @@ export async function getPostBySlug(slug: string): Promise<PostDetail | null> {
   // Get the full recordMap for the page
   const recordMap = await notionClient.getPage(page.id);
 
-  console.log(page);
+  // console.log(page);
 
   return {
     id: page.id,
@@ -96,5 +99,9 @@ export async function getPostBySlug(slug: string): Promise<PostDetail | null> {
     date: page.properties.Date.date?.start || "",
     blocks: recordMap, // This contains the full recordMap for react-notion-x
     pageId: page.id,
+    description: page.properties.Description.rich_text[0]?.plain_text || "",
+    tags: page.properties.tag.multi_select.map((tag: any) => tag.name),
+    coverImage: page.cover?.external?.url,
+    category: page.properties.category.rich_text[0]?.plain_text || "",
   };
 }
