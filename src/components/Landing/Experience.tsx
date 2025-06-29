@@ -112,7 +112,7 @@ export default function ExperienceSection() {
       </div>
 
       {/* Category Filter - Left aligned */}
-      <div className="mb-6 md:mb-8">
+      <div className="mt-2 mb-6 md:mb-8">
         <div className="flex flex-wrap gap-2 md:gap-3">
           {categories
             .filter((cat) => cat !== "All")

@@ -46,7 +46,7 @@ const BlogCard = ({ blog }: { blog: Post }) => {
             {blog.ReadTime || '5 min read'}
           </div>
           {/* Featured badge */}
-          { blog.Featured === "yes"  && (
+          {blog.Featured && (
         <div className="absolute top-4 right-4 z-20">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur-sm opacity-50"></div>
@@ -153,7 +153,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ allPosts }) => {
 
   // Calculate stats
   const totalBlogs = allPosts?.length || 0;
-  const featuredBlogs = allPosts?.filter(blog => blog.Featured==="yes").length || 0;
+  const featuredBlogs = allPosts?.filter(blog => blog.Featured).length || 0;
   const uniqueTags = Array.from(new Set(allPosts?.flatMap(blog => blog.tags) || [])).length;
 
   return (

@@ -16,25 +16,32 @@ interface HeroProps {
   id: string;
   title: string;
   slug: string;
-  Author: string;
+  author: string;
   ReadTime: string;
   date: string;
   blocks: any;
   pageId: string;
-  Description: string;
+  description: string;
   tags: string[];
   coverImage: string;
   category: string;
+  imageUrl: string;
 }
 
 const cate: HeroProps = {
-  // category: "tech",
+  id: "1",
   title: "The Future of Work: Tech and Remote Trends",
-  date: "6 Aug 2025 ",
+  slug: "future-of-work-tech-remote-trends",
   author: "Kunal Arya",
+  ReadTime: "5 min read",
+  date: "6 Aug 2025 ",
+  blocks: [],
+  pageId: "vlog-future-work",
   description:
     "Find out why 2024 is predicted to be a pivotal year for sports technology and its impact on the industry.",
   tags: ["react", "next"],
+  coverImage: "/kunal.jpg",
+  category: "tech",
   imageUrl: "/kunal.jpg",
 };
 

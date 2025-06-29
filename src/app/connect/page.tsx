@@ -27,11 +27,11 @@ export default function Connect() {
     <div className="min-h-screen bg-[#0a0a0a] py-10 px-4 md:px-8 lg:px-20 text-white">
       {/* Hero Section */}
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-amber-400 bg-clip-text text-transparent">
+        <div className="mb-16 text-center">
+          <h1 className="mb-6 text-4xl font-bold text-transparent md:text-5xl bg-gradient-to-r from-purple-400 to-amber-400 bg-clip-text">
             Let's Connect
           </h1>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+          <p className="max-w-3xl mx-auto text-lg text-gray-400">
             I'm always open to discussing new projects, creative ideas, or
             opportunities to be part of your vision. Whether you have a question
             or just want to say hello, I'll try my best to get back to you!
@@ -39,10 +39,10 @@ export default function Connect() {
         </div>
 
         {/* Contact Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 gap-8 mb-16 md:grid-cols-2">
           {/* Social Links Section */}
           <div className="bg-[#111111] border border-gray-800 rounded-xl p-8 hover:border-purple-500/30 transition-all">
-            <h2 className="text-2xl font-semibold mb-6">Social Profiles</h2>
+            <h2 className="mb-6 text-2xl font-semibold">Social Profiles</h2>
             <div className="grid grid-cols-1 gap-4">
               <SocialLink
                 icon={<FaGithub className="text-2xl" />}
@@ -72,12 +72,12 @@ export default function Connect() {
                 className="flex items-center gap-4 p-4 bg-[#0a0a0a] rounded-lg hover:bg-gray-800/40 transition-colors cursor-pointer"
                 onClick={copyEmail}
               >
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center">
+                <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20">
                   <FaEnvelope className="text-2xl text-purple-400" />
                 </div>
                 <div className="flex-grow">
                   <p className="font-medium">Email</p>
-                  <p className="text-gray-400 text-sm font-jetbrains">
+                  <p className="text-sm text-gray-400 font-jetbrains">
                     {email}
                   </p>
                 </div>
@@ -99,7 +99,7 @@ export default function Connect() {
           {/* Topmate Section */}
           <div className="bg-[#111111] border border-gray-800 rounded-xl p-8 hover:border-amber-500/30 transition-all">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 rounded-lg bg-amber-500/20 flex items-center justify-center">
+              <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-amber-500/20">
                 <MdSchedule className="text-3xl text-amber-400" />
               </div>
               <div>
@@ -116,9 +116,9 @@ export default function Connect() {
               <div className="bg-[#0a0a0a] border border-gray-800 rounded-lg p-5">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="font-medium">1:1 Quick Chat</h3>
-                  <span className="text-amber-400 font-semibold">₹499</span>
+                  <span className="font-semibold text-amber-400">₹499</span>
                 </div>
-                <p className="text-gray-400 text-sm mb-4">
+                <p className="mb-4 text-sm text-gray-400">
                   15-minute session to quickly discuss a specific topic or
                   question
                 </p>
@@ -134,9 +134,9 @@ export default function Connect() {
               <div className="bg-[#0a0a0a] border border-gray-800 rounded-lg p-5">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="font-medium">Career Guidance</h3>
-                  <span className="text-amber-400 font-semibold">₹999</span>
+                  <span className="font-semibold text-amber-400">₹999</span>
                 </div>
-                <p className="text-gray-400 text-sm mb-4">
+                <p className="mb-4 text-sm text-gray-400">
                   30-minute session for career advice, portfolio review, or job
                   search tips
                 </p>
@@ -152,9 +152,9 @@ export default function Connect() {
               <div className="bg-[#0a0a0a] border border-gray-800 rounded-lg p-5">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="font-medium">Project Consultation</h3>
-                  <span className="text-amber-400 font-semibold">₹1999</span>
+                  <span className="font-semibold text-amber-400">₹1999</span>
                 </div>
-                <p className="text-gray-400 text-sm mb-4">
+                <p className="mb-4 text-sm text-gray-400">
                   60-minute deep dive session to discuss your project or
                   technical challenges
                 </p>
@@ -168,11 +168,11 @@ export default function Connect() {
               </div>
             </div>
 
-            <div className="mt-6 pt-5 border-t border-gray-800">
+            <div className="pt-5 mt-6 border-t border-gray-800">
               <Link
                 href="https://topmate.io/kunalarya"
                 target="_blank"
-                className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-amber-500 to-amber-600 text-black rounded-lg py-3 px-4 font-medium hover:from-amber-600 hover:to-amber-700 transition-all"
+                className="flex items-center justify-center w-full gap-2 px-4 py-3 font-medium text-black transition-all rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700"
               >
                 View Full Profile on Topmate <HiChevronRight />
               </Link>
@@ -182,11 +182,11 @@ export default function Connect() {
 
         {/* Contact Form */}
         <div className="max-w-3xl mx-auto bg-[#111111] border border-gray-800 rounded-xl p-8 mb-16">
-          <h2 className="text-2xl font-semibold mb-6">Send Me a Message</h2>
+          <h2 className="mb-6 text-2xl font-semibold">Send Me a Message</h2>
           <form className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
-                <label htmlFor="name" className="block text-gray-400 mb-2">
+                <label htmlFor="name" className="block mb-2 text-gray-400">
                   Name
                 </label>
                 <input
@@ -197,7 +197,7 @@ export default function Connect() {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-gray-400 mb-2">
+                <label htmlFor="email" className="block mb-2 text-gray-400">
                   Email
                 </label>
                 <input
@@ -209,7 +209,7 @@ export default function Connect() {
               </div>
             </div>
             <div>
-              <label htmlFor="subject" className="block text-gray-400 mb-2">
+              <label htmlFor="subject" className="block mb-2 text-gray-400">
                 Subject
               </label>
               <input
@@ -220,7 +220,7 @@ export default function Connect() {
               />
             </div>
             <div>
-              <label htmlFor="message" className="block text-gray-400 mb-2">
+              <label htmlFor="message" className="block mb-2 text-gray-400">
                 Message
               </label>
               <textarea
@@ -232,7 +232,7 @@ export default function Connect() {
             </div>
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+              className="w-full px-6 py-3 font-medium text-white transition-colors rounded-lg bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800"
             >
               Send Message
             </button>
@@ -243,23 +243,31 @@ export default function Connect() {
   );
 }
 
+// Social Link Component Interface
+interface SocialLinkProps {
+  icon: React.ReactNode;
+  platform: string;
+  username: string;
+  url: string;
+}
+
 // Social Link Component
-function SocialLink({ icon, platform, username, url }) {
+function SocialLink({ icon, platform, username, url }: SocialLinkProps) {
   return (
     <Link
       href={url}
       target="_blank"
       className="flex items-center gap-4 p-4 bg-[#0a0a0a] rounded-lg hover:bg-gray-800/40 transition-colors"
     >
-      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
+      <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 text-purple-400 rounded-full bg-purple-500/20">
         {icon}
       </div>
       <div className="flex-grow">
         <p className="font-medium">{platform}</p>
-        <p className="text-gray-400 text-sm font-jetbrains">@{username}</p>
+        <p className="text-sm text-gray-400 font-jetbrains">@{username}</p>
       </div>
       <div className="flex-shrink-0">
-        <HiChevronRight className="text-gray-500 text-xl" />
+        <HiChevronRight className="text-xl text-gray-500" />
       </div>
     </Link>
   );
