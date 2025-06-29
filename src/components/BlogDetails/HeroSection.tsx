@@ -2,22 +2,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
-interface HeroProps {
-  id: string;
-  title: string;
-  slug: string;
-  Author: string;
-  ReadTime: string;
-  date: string;
-  blocks: any;
-  pageId: string;
-  Description: string;
-  tags: string[];
-  coverImage: string;
+interface HeroSectionProps {
   category: string;
+  title: string;
+  date: string;
+  author: string;
+  description: string;
+  tags: string[];
+  imageUrl: string;
 }
 
-export const HeroSection: FC<HeroProps> = (cate) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({
+  category,
+  title,
+  date,
+  author,
+  description,
+  tags,
+  imageUrl,
+}) => {
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-8 py-10 text-white">
       {/* Breadcrumb */}
@@ -32,31 +35,46 @@ export const HeroSection: FC<HeroProps> = (cate) => {
         >
           {cate.category}
         </Link> */}
-        {cate.category}
+        {category}
         <span className="mx-2">›</span>
-        <span className="text-gray-300">{cate.title}</span>
+        <span className="text-gray-300">{title}</span>
       </div>
 
       <div className="flex flex-col-reverse lg:flex-row gap-10 items-start">
         {/* Left Text Content */}
         <div className="flex-1">
-          <p className="text-sm mb-2 text-gray-400">
-            <span className="font-semibold text-white">{cate.Author}</span> on
-            {cate.date}
+          <div className="mb-4">
+            <span className="text-sm md:text-base uppercase tracking-wider text-gray-400">
+              {category}
+            </span>
+          </div>
+          <h1 className="text-3xl md:text-5xl font-bold mb-6">{title}</h1>
+          <div className="flex flex-wrap items-center gap-4 mb-8">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-full overflow-hidden">
+                <Image
+                  src={imageUrl}
+                  alt={author}
+                  width={40}
+                  height={40}
+                  className="object-cover"
+                />
+              </div>
+              <span className="text-sm md:text-base">{author}</span>
+            </div>
+            <span className="text-gray-400">•</span>
+            <span className="text-sm md:text-base text-gray-400">{date}</span>
+          </div>
+          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl">
+            {description}
           </p>
-          <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
-            {cate.title}
-          </h1>
-          <p className="text-lg text-gray-300 mb-6">{cate.Description}</p>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-3">
-            {cate.tags.map((tag, index) => (
+          <div className="flex flex-wrap gap-2">
+            {tags.map((tag) => (
               <span
-                key={index}
-                className="bg-[#1f1e1e] border border-[#3a3a3a] px-3 py-1 text-sm rounded-full"
+                key={tag}
+                className="px-3 py-1 bg-[#242323] rounded-full text-sm"
               >
-                {tag.toUpperCase()}
+                {tag}
               </span>
             ))}
           </div>
@@ -64,13 +82,12 @@ export const HeroSection: FC<HeroProps> = (cate) => {
 
         {/* Right Image */}
         <div className="w-full lg:w-[45%]">
-          <div className="overflow-hidden rounded-2xl w-full aspect-[16/12]">
+          <div className="mt-8 w-full aspect-[16/9] relative rounded-2xl overflow-hidden">
             <Image
-              src={cate.coverImage}
-              alt="Blog hero image"
-              width={800}
-              height={500}
-              className="w-full h-full object-cover"
+              src={imageUrl}
+              alt={title}
+              fill
+              className="object-cover"
               priority
             />
           </div>

@@ -13,17 +13,22 @@ import Workexperi from "@/components/BlogDetails/WorkExp";
 gsap.registerPlugin(ScrollTrigger);
 
 interface HeroProps {
-  category: string;
+  id: string;
   title: string;
+  slug: string;
+  Author: string;
+  ReadTime: string;
   date: string;
-  author: string;
-  description: string;
+  blocks: any;
+  pageId: string;
+  Description: string;
   tags: string[];
-  imageUrl: string;
+  coverImage: string;
+  category: string;
 }
 
 const cate: HeroProps = {
-  category: "tech",
+  // category: "tech",
   title: "The Future of Work: Tech and Remote Trends",
   date: "6 Aug 2025 ",
   author: "Kunal Arya",
@@ -138,6 +143,7 @@ const Hero = () => {
   return (
     <div className="px-4 md:px-8 lg:px-20" ref={mainContentRef}>
       <HeroSection {...cate} />
+
       {/* Details */}
       <div
         ref={triggerRef}
@@ -236,12 +242,12 @@ const Hero = () => {
             readers into a world of deeply personal narratives. The websites
             title, Heartfelt Reflections: Stories of Love, Loss, and Growth,
             signals this intent clearly, inviting you to journey through the
-            most intimate aspects of human experience. But were not just
-            talking about written content — there are many ways that Revision
-            fosters connection and creativity. The different types of features
-            include: Author Profiles: Each contributor has a detailed profile,
-            allowing readers to connect with their personal journey and social
-            media presence. Experience Widgets: Contributors showcase their
+            most intimate aspects of human experience. But were not just talking
+            about written content — there are many ways that Revision fosters
+            connection and creativity. The different types of features include:
+            Author Profiles: Each contributor has a detailed profile, allowing
+            readers to connect with their personal journey and social media
+            presence. Experience Widgets: Contributors showcase their
             professional growth and skills, giving readers insight into their
             expertise. Technologies Section: Creators highlight the tools they
             use, such as Figma, Photoshop, and more, providing transparency in
@@ -285,8 +291,8 @@ const Hero = () => {
               <div className="flex items-center gap-4 md:gap-10 mb-4">
                 <div className="h-[8vh] w-[8vh] md:h-[10vh] md:w-[10vh] rounded-[50%] overflow-hidden">
                   <Image
-                  height={100}
-                  width={100}
+                    height={100}
+                    width={100}
                     src="/kunal.jpg"
                     alt="Kunal Arya"
                     className="w-full h-full object-cover"

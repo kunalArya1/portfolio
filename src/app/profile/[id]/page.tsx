@@ -58,7 +58,9 @@ export default function BlogPage() {
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-10 mb-6">
           <div className="h-40 w-40 sm:h-[20vh] sm:w-[20vh] overflow-hidden bg-red-200 rounded-full">
             <Image
-              src="./kunal.jpg"
+              height={100}
+              width={100}
+              src="/kunal.jpg"
               alt="Kunal Arya"
               className="h-full w-full object-cover"
             />
@@ -208,7 +210,7 @@ export default function BlogPage() {
           >
             <Link href={`/blogs/${blog.title}`}>
               <Image
-                src={blog.image}
+                src="/kunal.jpg"
                 alt={blog.title}
                 width={400}
                 height={200}

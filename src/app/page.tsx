@@ -1,3 +1,5 @@
+"use client";
+import { useEffect } from "react";
 
 import WorkExperience from "@/components/Landing/WorkExp";
 import BestProjects from "@/components/Landing/BestProject";

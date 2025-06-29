@@ -32,7 +32,7 @@ export default function Header() {
   return (
     <>
       {/* Full Navbar at Top */}
-      <header className="w-full bg-black border-b border-[#3a3a3a] px-6 py-4 lg:px-20 z-40">
+      <header className="w-full bg-black border-b border-[#3a3a3a] px-6 py-4 lg:px-20 z-40 mb-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3 text-white text-lg font-semibold">
@@ -107,8 +107,7 @@ export default function Header() {
         )}
       </header>
 
-      {/* kkk */}
-
+      {/* Floating Navbar on Scroll */}
       {isScrolled && (
         <div className="hidden md:flex fixed top-4 left-1/2 -translate-x-1/2 z-50 w-fit bg-[#1f1e1e]/60 backdrop-blur-md border border-[#3a3a3a] px-4 py-2 rounded-3xl shadow-lg">
           <nav className="flex gap-2">

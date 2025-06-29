@@ -8,7 +8,7 @@ import {
   FaGitSquare,
   FaAws,
 } from "react-icons/fa";
-import { SiTypescript } from "react-icons/si";
+import { SiTypescript, SiTailwindcss, SiVisualstudiocode } from "react-icons/si";
 import {
   TbBrandCpp,
   TbBrandReact,
@@ -35,8 +35,6 @@ import {
 import { BiLogoPostgresql, BiLogoSpringBoot } from "react-icons/bi";
 import { IoLogoFigma } from "react-icons/io5";
 import { IoLogoCss3 } from "react-icons/io";
-import { RiTailwindCssFill } from "react-icons/ri";
-import { VscVscode } from "react-icons/vsc";
 
 const devIcons = [
   { src: <TbBrandReact />, alt: "React" },
@@ -49,18 +47,17 @@ const devIcons = [
   { src: <SiAppwrite />, alt: "Appwrite" },
   { src: <SiHtml5 />, alt: "HTML5" },
   { src: <IoLogoCss3 />, alt: "CSS" },
-  { src: <RiTailwindCssFill />, alt: "Tailwind CSS" },
+  { src: <SiTailwindcss />, alt: "Tailwind CSS" },
   { src: <TbBrandThreejs />, alt: "Three.js" },
 ];
 const designIcons = [
-  { src: <VscVscode />, alt: "Photoshop" },
-  { src: <SiPostman />, alt: "Figma" },
-  { src: <FaGithubSquare />, alt: "Figma" },
-  { src: <FaGitSquare />, alt: "Figma" },
-  { src: <SiIntellijidea />, alt: "Figma" },
-  { src: <SiPycharm />, alt: "Figma" },
-  // { src: <FaGithubSquare />, alt: "Figma" },
-  { src: <IoLogoFigma />, alt: "Adobe XD" },
+  { src: <SiVisualstudiocode />, alt: "VS Code" },
+  { src: <SiPostman />, alt: "Postman" },
+  { src: <FaGithubSquare />, alt: "GitHub" },
+  { src: <FaGitSquare />, alt: "Git" },
+  { src: <SiIntellijidea />, alt: "IntelliJ IDEA" },
+  { src: <SiPycharm />, alt: "PyCharm" },
+  { src: <IoLogoFigma />, alt: "Figma" },
 ];
 const languageIcons = [
   { src: <TbBrandCpp />, alt: "Cpp" },
