@@ -118,22 +118,7 @@ export default function Projects() {
   const [showFeatured, setShowFeatured] = useState(false);
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [loading, setLoading] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const observer = useRef<IntersectionObserver>();
-
-  // Scroll progress tracking
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
-      const docHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      setScrollProgress(Math.min(scrollPercent, 100));
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Enhanced search function
   const matchesSearchTerm = (project: any, searchTerm: string) => {
@@ -240,14 +225,6 @@ export default function Projects() {
 
   return (
     <div className="min-h-screen px-3 sm:px-4 md:px-8 lg:px-20">
-      {/* Scroll Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800/50 z-50">
-        <div
-          className="h-full bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 transition-all duration-150 ease-out"
-          style={{ width: `${scrollProgress}%` }}
-        />
-      </div>
-
       {/* Hero Header */}
       <div className="relative pt-4 sm:pt-6 pb-8 sm:pb-12">
         <div className="relative max-w-7xl mx-auto">

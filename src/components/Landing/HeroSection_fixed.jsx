@@ -41,7 +41,7 @@ export default function HeroSection() {
 
         {/* Right: Introduction */}
         <div className="max-w-2xl text-center md:text-left">
-          <h1 className="mb-4 text-3xl font-extrabold leading-tight text-white sm:text-5xl">
+          <h1 className="mb-4 text-3xl font-extrabold leading-tight sm:text-5xl">
             Hello! I'm Kunal Arya <br /> Turning Ideas into Code and Code into
             Impact
           </h1>

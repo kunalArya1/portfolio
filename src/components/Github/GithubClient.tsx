@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef, useCallback } from 'react';
-import GithubProfile from './GithubProfile';
-import RepoCard from './RepoCard';
-import { FaSearch, FaHistory } from 'react-icons/fa';
-import { BiGitRepoForked } from 'react-icons/bi';
-import { AiOutlineStar } from 'react-icons/ai';
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import GithubProfile from "./GithubProfile";
+import RepoCard from "./RepoCard";
+import { FaSearch, FaHistory } from "react-icons/fa";
+import { BiGitRepoForked } from "react-icons/bi";
+import { AiOutlineStar } from "react-icons/ai";
 
 interface Repository {
   id: number;
@@ -53,21 +53,24 @@ interface GithubClientProps {
 const ITEMS_PER_PAGE = 6;
 
 const languageColors: { [key: string]: string } = {
-  JavaScript: 'bg-yellow-500',
-  TypeScript: 'bg-blue-500',
-  Python: 'bg-green-500',
-  Java: 'bg-red-500',
-  'C++': 'bg-purple-500',
-  HTML: 'bg-orange-500',
-  CSS: 'bg-pink-500',
+  JavaScript: "bg-yellow-500",
+  TypeScript: "bg-blue-500",
+  Python: "bg-green-500",
+  Java: "bg-red-500",
+  "C++": "bg-purple-500",
+  HTML: "bg-orange-500",
+  CSS: "bg-pink-500",
   // Add more languages as needed
 };
 
-const GithubClient: React.FC<GithubClientProps> = ({ initialData, username }) => {
+const GithubClient: React.FC<GithubClientProps> = ({
+  initialData,
+  username,
+}) => {
   const [mounted, setMounted] = useState(false);
-  const [search, setSearch] = useState('');
-  const [selectedLanguage, setSelectedLanguage] = useState('');
-  const [sortBy, setSortBy] = useState('updated');
+  const [search, setSearch] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [sortBy, setSortBy] = useState("updated");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -78,54 +81,83 @@ const GithubClient: React.FC<GithubClientProps> = ({ initialData, username }) =>
     setMounted(true);
   }, []);
 
+  // Optimize filter change effects with debouncing
   useEffect(() => {
-    // Reset pagination when filters change
-    setPage(1);
-    setDisplayedRepos([]);
-    setHasMore(true);
+    const timeoutId = setTimeout(() => {
+      setPage(1);
+      setDisplayedRepos([]);
+      setHasMore(true);
+    }, 100); // Add small debounce
+
+    return () => clearTimeout(timeoutId);
   }, [search, selectedLanguage, sortBy]);
 
-  const lastRepoElementRef = useCallback((node: HTMLDivElement) => {
-    if (loading) return;
-    if (observer.current) observer.current.disconnect();
-    observer.current = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting && hasMore) {
-        setPage(prevPage => prevPage + 1);
-      }
-    });
-    if (node) observer.current.observe(node);
-  }, [loading, hasMore]);
+  const lastRepoElementRef = useCallback(
+    (node: HTMLDivElement) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting && hasMore) {
+            setPage((prevPage) => prevPage + 1);
+          }
+        },
+        {
+          threshold: 0.1, // Trigger earlier for better UX
+          rootMargin: "100px", // Load more before reaching the bottom
+        }
+      );
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
 
-  // Filter and sort repositories
-  const filteredRepos = initialData.repos.filter(repo => {
-    const matchesSearch = search === '' || 
-      repo.name.toLowerCase().includes(search.toLowerCase()) ||
-      (repo.description && repo.description.toLowerCase().includes(search.toLowerCase()));
+  // Memoize filtered repositories to avoid recalculation
+  const filteredRepos = useMemo(() => {
+    return initialData.repos
+      .filter((repo) => {
+        const matchesSearch =
+          search === "" ||
+          repo.name.toLowerCase().includes(search.toLowerCase()) ||
+          (repo.description &&
+            repo.description.toLowerCase().includes(search.toLowerCase()));
 
-    const matchesLanguage = selectedLanguage === '' || repo.language === selectedLanguage;
+        const matchesLanguage =
+          selectedLanguage === "" || repo.language === selectedLanguage;
 
-    return matchesSearch && matchesLanguage;
-  }).sort((a, b) => {
-    switch (sortBy) {
-      case 'stars':
-        return b.stargazers_count - a.stargazers_count;
-      case 'forks':
-        return b.forks_count - a.forks_count;
-      case 'name':
-        return a.name.localeCompare(b.name);
-      case 'updated':
-        return new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime();
-      default:
-        return 0;
-    }
-  });
+        return matchesSearch && matchesLanguage;
+      })
+      .sort((a, b) => {
+        switch (sortBy) {
+          case "stars":
+            return b.stargazers_count - a.stargazers_count;
+          case "forks":
+            return b.forks_count - a.forks_count;
+          case "name":
+            return a.name.localeCompare(b.name);
+          case "updated":
+            return (
+              new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime()
+            );
+          default:
+            return 0;
+        }
+      });
+  }, [initialData.repos, search, selectedLanguage, sortBy]);
 
+  // Optimize the displayedRepos update
   useEffect(() => {
     const startIndex = 0;
     const endIndex = page * ITEMS_PER_PAGE;
     const newRepos = filteredRepos.slice(startIndex, endIndex);
-    setDisplayedRepos(newRepos);
-    setHasMore(endIndex < filteredRepos.length);
+
+    // Use requestAnimationFrame for smoother updates
+    const updateRepos = () => {
+      setDisplayedRepos(newRepos);
+      setHasMore(endIndex < filteredRepos.length);
+    };
+
+    requestAnimationFrame(updateRepos);
   }, [page, filteredRepos]);
 
   if (!mounted) {
@@ -150,15 +182,21 @@ const GithubClient: React.FC<GithubClientProps> = ({ initialData, username }) =>
             <div className="space-y-4">
               <div className="flex items-center justify-between bg-[#0a0a0a] p-3 rounded-lg">
                 <span className="text-gray-400">Total Repositories</span>
-                <span className="text-purple-500 font-semibold">{initialData.profile.public_repos}</span>
+                <span className="text-purple-500 font-semibold">
+                  {initialData.profile.public_repos}
+                </span>
               </div>
               <div className="flex items-center justify-between bg-[#0a0a0a] p-3 rounded-lg">
                 <span className="text-gray-400">Total Stars</span>
-                <span className="text-purple-500 font-semibold">{initialData.profile.total_stars}</span>
+                <span className="text-purple-500 font-semibold">
+                  {initialData.profile.total_stars}
+                </span>
               </div>
               <div className="flex items-center justify-between bg-[#0a0a0a] p-3 rounded-lg">
                 <span className="text-gray-400">Total Forks</span>
-                <span className="text-purple-500 font-semibold">{initialData.profile.total_forks}</span>
+                <span className="text-purple-500 font-semibold">
+                  {initialData.profile.total_forks}
+                </span>
               </div>
             </div>
           </div>
@@ -170,20 +208,26 @@ const GithubClient: React.FC<GithubClientProps> = ({ initialData, username }) =>
               Languages
             </h3>
             <div className="space-y-3">
-              {initialData.languageStats.map(({ language, percentage, count }) => (
-                <div key={language} className="space-y-1">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-400">{language}</span>
-                    <span className="text-gray-400">{percentage}% ({count})</span>
+              {initialData.languageStats.map(
+                ({ language, percentage, count }) => (
+                  <div key={language} className="space-y-1">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-400">{language}</span>
+                      <span className="text-gray-400">
+                        {percentage}% ({count})
+                      </span>
+                    </div>
+                    <div className="h-2 bg-[#0a0a0a] rounded-full overflow-hidden">
+                      <div
+                        className={`h-full ${
+                          languageColors[language] || "bg-gray-500"
+                        }`}
+                        style={{ width: `${percentage}%` }}
+                      />
+                    </div>
                   </div>
-                  <div className="h-2 bg-[#0a0a0a] rounded-full overflow-hidden">
-                    <div
-                      className={`h-full ${languageColors[language] || 'bg-gray-500'}`}
-                      style={{ width: `${percentage}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
+                )
+              )}
             </div>
           </div>
         </div>
@@ -213,7 +257,9 @@ const GithubClient: React.FC<GithubClientProps> = ({ initialData, username }) =>
               >
                 <option value="">All Languages</option>
                 {initialData.languageStats.map(({ language }) => (
-                  <option key={language} value={language}>{language}</option>
+                  <option key={language} value={language}>
+                    {language}
+                  </option>
                 ))}
               </select>
 
@@ -256,8 +302,12 @@ const GithubClient: React.FC<GithubClientProps> = ({ initialData, username }) =>
           {/* No Results */}
           {displayedRepos.length === 0 && !loading && (
             <div className="text-center py-20">
-              <h3 className="text-2xl font-semibold text-gray-400 mb-2">No repositories found</h3>
-              <p className="text-gray-500">Try adjusting your search or filters</p>
+              <h3 className="text-2xl font-semibold text-gray-400 mb-2">
+                No repositories found
+              </h3>
+              <p className="text-gray-500">
+                Try adjusting your search or filters
+              </p>
             </div>
           )}
         </div>
@@ -266,4 +316,4 @@ const GithubClient: React.FC<GithubClientProps> = ({ initialData, username }) =>
   );
 };
 
-export default GithubClient; 
+export default GithubClient;

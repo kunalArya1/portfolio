@@ -8,5 +8,5 @@ export interface Post {
   date: string;
   tags: string[];
   description: string;
-  Featured: string;
+  Featured: boolean;
 }

@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['var(--font-jetbrains-mono)', 'monospace'],
-        'jetbrains': ['var(--font-jetbrains-mono)', 'monospace'],
+        sans: ["var(--font-jetbrains-mono)", "monospace"],
+        jetbrains: ["var(--font-jetbrains-mono)", "monospace"],
       },
       colors: {
         primary: "#050816",
@@ -28,4 +28,4 @@ module.exports = {
     },
   },
   plugins: [],
-}; 
+};

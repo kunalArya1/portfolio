@@ -3,4 +3,6 @@ export type Experience = {
   company: string;
   year: string;
   description?: string;
+  category: string;
+  skills?: string[];
 };

@@ -7,14 +7,14 @@ const nextConfig = {
       "cdn.example.com",
       "yourdomain.com",
       "www.notion.so",
-      "avatars.githubusercontent.com"
+      "avatars.githubusercontent.com",
     ],
   },
   webpack: (config, { isServer }) => {
     // Canvas package configuration
     if (isServer) {
       config.externals.push({
-        canvas: 'commonjs canvas',
+        canvas: "commonjs canvas",
       });
     }
 
@@ -28,4 +28,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig; 
+module.exports = nextConfig;

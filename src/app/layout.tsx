@@ -6,6 +6,7 @@ import Footer from "@/components/Layout/Footer/page";
 import NewLetter from "@/components/Landing/Newsletter";
 import { Suspense } from "react";
 import GlobalLoading from "@/components/ui/GlobalLoading";
+import ScrollProgressBar from "@/components/ui/ScrollProgressBar";
 
 const inter = Inter({ subsets: ["latin"] });
 const jetbrainsMono = JetBrains_Mono({
@@ -103,11 +104,12 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`h-full w-full bg-black overflow-x-hidden ${jetbrainsMono.className} ${jetbrainsMono.variable}`}
       >
+        <ScrollProgressBar />
         <Suspense fallback={<GlobalLoading />}>
           <main>
             <Header />
             {children}
-            <NewLetter />
+            {/* <NewLetter /> */}
             <Footer />
           </main>
         </Suspense>

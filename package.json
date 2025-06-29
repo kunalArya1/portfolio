@@ -16,6 +16,7 @@
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "font-awesome": "^4.7.0",
+    "framer-motion": "^12.19.2",
     "gsap": "^3.12.5",
     "katex": "^0.16.9",
     "lucide-react": "^0.309.0",

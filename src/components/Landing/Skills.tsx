@@ -8,7 +8,11 @@ import {
   FaGitSquare,
   FaAws,
 } from "react-icons/fa";
-import { SiTypescript, SiTailwindcss, SiVisualstudiocode } from "react-icons/si";
+import {
+  SiTypescript,
+  SiTailwindcss,
+  SiVisualstudiocode,
+} from "react-icons/si";
 import {
   TbBrandCpp,
   TbBrandReact,
@@ -106,7 +110,7 @@ export default function SkillsSection() {
     <section className="w-full  text-white px-6 py-12 ">
       <div className="max-w-7xl mx-auto text-start">
         <h2 className="text-3xl sm:text-4xl font-bold mb-2">
-          Things I am <span className="text-blue-400">good</span> at
+          Things I am <span className="text-purple-400">good</span> at
         </h2>
         <p className="text-gray-400 text-lg mb-10">
           skills, interests, passion and hobbies
@@ -114,14 +118,14 @@ export default function SkillsSection() {
 
         {/* Language Section */}
         <div className="my-9">
-          <div className="inline-block border-2 border-white rounded-md px-4 py-1 mb-4 text-lg font-medium">
+          <div className="inline-block border-2 border-purple-400 rounded-md px-4 py-1 mb-4 text-lg font-medium text-purple-400">
             Language
           </div>
           <div className="flex flex-wrap justify-start gap-6">
             {languageIcons.map((icon, idx) => (
               <div
                 key={idx}
-                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4"
+                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-all duration-300 text-[7vh] hover:scale-110 hover:text-purple-400 mt-4"
               >
                 {icon.src}
               </div>
@@ -130,14 +134,14 @@ export default function SkillsSection() {
         </div>
         {/* Development Section */}
         <div className="mb-12">
-          <div className="inline-block border-2 border-white rounded-md px-4 py-1 mb-4 text-lg font-medium">
+          <div className="inline-block border-2 border-purple-400 rounded-md px-4 py-1 mb-4 text-lg font-medium text-purple-400">
             development
           </div>
           <div className="flex flex-wrap justify-start gap-6">
             {devIcons.map((icon, idx) => (
               <div
                 key={idx}
-                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4"
+                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-all duration-300 text-[7vh] hover:scale-110 hover:text-purple-400 mt-4"
               >
                 {icon.src}
               </div>
@@ -147,14 +151,14 @@ export default function SkillsSection() {
 
         {/* Database Section */}
         <div className="mt-9">
-          <div className="inline-block border-2 border-white rounded-md px-4 py-1 mb-4 text-lg font-medium">
+          <div className="inline-block border-2 border-purple-400 rounded-md px-4 py-1 mb-4 text-lg font-medium text-purple-400">
             Database
           </div>
           <div className="flex flex-wrap justify-start gap-6">
             {dataabseIcons.map((icon, idx) => (
               <div
                 key={idx}
-                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4"
+                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-all duration-300 text-[7vh] hover:scale-110 hover:text-purple-400 mt-4"
               >
                 {icon.src}
               </div>
@@ -164,14 +168,14 @@ export default function SkillsSection() {
 
         {/* Tools Section */}
         <div>
-          <div className="inline-block border-2 border-white rounded-md px-4 py-1 my-8 text-lg font-medium">
+          <div className="inline-block border-2 border-purple-400 rounded-md px-4 py-1 my-8 text-lg font-medium text-purple-400">
             Tools
           </div>
           <div className="flex flex-wrap justify-start gap-6">
             {designIcons.map((icon, idx) => (
               <div
                 key={idx}
-                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4"
+                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-all duration-300 text-[7vh] hover:scale-110 hover:text-purple-400 mt-4"
               >
                 {icon.src}
               </div>
@@ -181,14 +185,14 @@ export default function SkillsSection() {
 
         {/* DevOps Section */}
         <div>
-          <div className="inline-block border-2 border-white rounded-md px-4 py-1 my-8 text-lg font-medium">
+          <div className="inline-block border-2 border-purple-400 rounded-md px-4 py-1 my-8 text-lg font-medium text-purple-400">
             DevOps
           </div>
           <div className="flex flex-wrap justify-start gap-6">
             {devOpsIcons.map((icon, idx) => (
               <div
                 key={idx}
-                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-transform text-[7vh] hover:scale-110 mt-4"
+                className="w-20 h-12 sm:w-14 sm:h-14 object-cover transition-all duration-300 text-[7vh] hover:scale-110 hover:text-purple-400 mt-4"
               >
                 {icon.src}
               </div>

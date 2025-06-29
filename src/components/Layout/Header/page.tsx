@@ -65,16 +65,24 @@ export default function Header() {
 
           {/* Resume */}
           <div className="hidden lg:flex items-center gap-4 text-white">
-            <Link
-              href={
-                "https://drive.google.com/file/d/1RqAGVhchh9y99SNKcEVXFAX6dCCEWmPn/view?usp=sharing"
-              }
-              target="blank"
-            >
-              <button className="bg-[#7728bc] text-white px-5 py-2 rounded-2xl cursor-pointer">
-                Resume <FaAngleRight className=" inline-block" />
-              </button>
-            </Link>
+            <div className="relative group">
+              <div className="absolute transition duration-300 rounded-full -inset-1 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 blur opacity-30"></div>
+              <Link
+                href={
+                  "https://drive.google.com/file/d/1RqAGVhchh9y99SNKcEVXFAX6dCCEWmPn/view?usp=sharing"
+                }
+                target="blank"
+              >
+                <button className="relative px-6 py-3 overflow-hidden font-semibold text-white transition-all duration-300 rounded-full shadow-lg bg-gradient-to-r from-purple-600 via-purple-700 to-blue-600">
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <span className="font-bold text-transparent bg-gradient-to-r from-white to-purple-100 bg-clip-text">
+                      Resume
+                    </span>
+                    <FaAngleRight className="w-4 h-4 text-white drop-shadow-sm" />
+                  </span>
+                </button>
+              </Link>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -99,9 +107,24 @@ export default function Header() {
               </Link>
             ))}
             <div className="mt-4 flex justify-start px-4">
-              <button className="bg-[#7728bc] text-white px-4 py-2 rounded-xl">
-                Resume <FaAngleRight className=" inline-block" />
-              </button>
+              <div className="relative group">
+                <div className="absolute transition duration-300 rounded-full -inset-1 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 blur opacity-30"></div>
+                <Link
+                  href={
+                    "https://drive.google.com/file/d/1RqAGVhchh9y99SNKcEVXFAX6dCCEWmPn/view?usp=sharing"
+                  }
+                  target="blank"
+                >
+                  <button className="relative px-6 py-3 overflow-hidden font-semibold text-white transition-all duration-300 rounded-full shadow-lg bg-gradient-to-r from-purple-600 via-purple-700 to-blue-600">
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      <span className="font-bold text-transparent bg-gradient-to-r from-white to-purple-100 bg-clip-text">
+                        Resume
+                      </span>
+                      <FaAngleRight className="w-4 h-4 text-white drop-shadow-sm" />
+                    </span>
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         )}
