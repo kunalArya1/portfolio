@@ -10,7 +10,10 @@ const nextConfig = {
       "avatars.githubusercontent.com",
     ],
   },
-  webpack: (config, { isServer }) => {
+  experimental: {
+    esmExternals: 'loose',
+  },
+  webpack: (config, { isServer, dev }) => {
     // Canvas package configuration
     if (isServer) {
       config.externals.push({
@@ -22,7 +25,34 @@ const nextConfig = {
     config.resolve.fallback = {
       ...config.resolve.fallback,
       canvas: false,
+      fs: false,
+      net: false,
+      tls: false,
     };
+
+    // Optimize chunks and prevent dynamic import issues
+    if (!dev && !isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          ...config.optimization.splitChunks,
+          cacheGroups: {
+            ...config.optimization.splitChunks.cacheGroups,
+            default: {
+              minChunks: 1,
+              priority: -20,
+              reuseExistingChunk: true,
+            },
+          },
+        },
+      };
+    }
+
+    // Fix module resolution issues
+    config.resolve.modules = [
+      ...(config.resolve.modules || []),
+      'node_modules',
+    ];
 
     return config;
   },

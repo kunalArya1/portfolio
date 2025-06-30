@@ -25,77 +25,90 @@ function calculateLanguageStats(repos: any[]) {
 
 // This is a server component that fetches the initial data
 async function getGithubData(username: string) {
-  const headers = {
+  console.log(`[Server] Fetching GitHub data for user: ${username}`);
+  
+  const headers: HeadersInit = {
     Accept: "application/vnd.github.v3+json",
-    ...(process.env.GITHUB_TOKEN && {
-      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-    }),
+    "User-Agent": "portfolio-website-nextjs",
   };
 
+  // Add GitHub token if available
+  if (process.env.GITHUB_TOKEN) {
+    headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+    console.log("[Server] Using GitHub token");
+  } else {
+    console.log("[Server] No GitHub token found, using unauthenticated requests");
+  }
+
   try {
-    // Use Promise.allSettled for better error handling and faster failures
-    const [profileRes, reposRes] = await Promise.allSettled([
+    // Fetch profile and repos with reduced caching for debugging
+    const [profileRes, reposRes] = await Promise.all([
       fetch(`https://api.github.com/users/${username}`, {
         headers,
-        next: { revalidate: 7200 }, // Increased to 2 hours for better performance
-        cache: "force-cache", // Force caching for better performance
+        next: { revalidate: 60 }, // 1 minute for debugging
       }),
       fetch(
-        `https://api.github.com/users/${username}/repos?sort=updated&per_page=50`, // Reduced from 100 to 50
+        `https://api.github.com/users/${username}/repos?sort=updated&per_page=100&type=public`,
         {
           headers,
-          next: { revalidate: 7200 }, // Increased to 2 hours
-          cache: "force-cache", // Force caching for better performance
+          next: { revalidate: 60 }, // 1 minute for debugging
         }
       ),
     ]);
 
-    // Handle promise results
-    if (profileRes.status === "rejected" || reposRes.status === "rejected") {
-      console.error("GitHub API Error:", {
-        profileError:
-          profileRes.status === "rejected" ? profileRes.reason : null,
-        reposError: reposRes.status === "rejected" ? reposRes.reason : null,
-      });
-      throw new Error("Failed to fetch GitHub data");
+    console.log(`[Server] Profile API Status: ${profileRes.status}`);
+    console.log(`[Server] Repos API Status: ${reposRes.status}`);
+
+    if (!profileRes.ok) {
+      const errorText = await profileRes.text();
+      console.error(`[Server] Profile API Error: ${profileRes.status} - ${errorText}`);
+      throw new Error(`Profile API returned ${profileRes.status}`);
     }
 
-    if (!profileRes.value.ok || !reposRes.value.ok) {
-      console.error("GitHub API Error:", {
-        profileStatus: profileRes.value.status,
-        reposStatus: reposRes.value.status,
-      });
-      throw new Error("GitHub API returned error status");
+    if (!reposRes.ok) {
+      const errorText = await reposRes.text();
+      console.error(`[Server] Repos API Error: ${reposRes.status} - ${errorText}`);
+      throw new Error(`Repos API returned ${reposRes.status}`);
     }
 
     const [profileData, reposData] = await Promise.all([
-      profileRes.value.json(),
-      reposRes.value.json(),
+      profileRes.json(),
+      reposRes.json(),
     ]);
 
-    // Calculate total stars and forks more efficiently
+    console.log(`[Server] Profile fetched: ${profileData.login}`);
+    console.log(`[Server] Repos fetched: ${Array.isArray(reposData) ? reposData.length : 'Not an array'}`);
+
+    // Ensure reposData is an array
+    const repos = Array.isArray(reposData) ? reposData : [];
+
+    // Calculate total stars and forks
     let totalStars = 0;
     let totalForks = 0;
 
-    for (const repo of reposData) {
+    for (const repo of repos) {
       totalStars += repo.stargazers_count || 0;
       totalForks += repo.forks_count || 0;
     }
 
-    const languageStats = calculateLanguageStats(reposData);
+    const languageStats = calculateLanguageStats(repos);
 
-    return {
+    const result = {
       profile: {
         ...profileData,
         total_stars: totalStars,
         total_forks: totalForks,
       },
-      repos: reposData,
+      repos,
       languageStats,
     };
+
+    console.log(`[Server] Final result - repos count: ${result.repos.length}, languages: ${result.languageStats.length}`);
+    return result;
   } catch (error) {
-    console.error("Error fetching GitHub data:", error);
-    // Return fallback data instead of throwing
+    console.error("[Server] Error fetching GitHub data:", error);
+    
+    // Return minimal fallback data so the client can try to fetch
     return {
       profile: {
         name: "Kunal Arya",
@@ -111,7 +124,7 @@ async function getGithubData(username: string) {
         total_stars: 0,
         total_forks: 0,
       },
-      repos: [],
+      repos: [], // Empty array so client-side fetch will trigger
       languageStats: [],
     };
   }
@@ -119,7 +132,14 @@ async function getGithubData(username: string) {
 
 export default async function GithubPage() {
   const username = "kunalArya1";
+  
+  console.log("GitHub page rendering, fetching data for:", username);
   const data = await getGithubData(username);
+  console.log("GitHub page received data:", {
+    profileName: data.profile?.name,
+    reposCount: data.repos?.length,
+    languageStatsCount: data.languageStats?.length
+  });
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] py-10 px-4 md:px-8 lg:px-20">

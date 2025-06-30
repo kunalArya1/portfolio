@@ -15,32 +15,32 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kunal Arya - Full Stack Developer",
+  title: "Kunal Kumar Arya - Full Stack Developer",
   description:
-    "Portfolio website of Kunal Arya - Full Stack Developer passionate about building smooth and scalable web experiences",
+    "Portfolio website of Kunal Kumar Arya - Full Stack Developer passionate about building smooth and scalable web experiences",
   keywords: [
-    "Kunal Arya",
+    "Kunal Kumar Arya",
     "Full Stack Developer",
     "React",
     "Next.js",
     "Portfolio",
     "Web Developer",
   ],
-  authors: [{ name: "Kunal Arya" }],
-  creator: "Kunal Arya",
-  publisher: "Kunal Arya",
+  authors: [{ name: "Kunal Kumar Arya" }],
+  creator: "Kunal Kumar Arya",
+  publisher: "Kunal Kumar Arya",
   openGraph: {
-    title: "Kunal Arya - Full Stack Developer",
+    title: "Kunal Kumar Arya - Full Stack Developer",
     description:
-      "Portfolio website of Kunal Arya - Full Stack Developer passionate about building smooth and scalable web experiences",
+      "Portfolio website of Kunal Kumar Arya - Full Stack Developer passionate about building smooth and scalable web experiences",
     url: "https://kunalarya.dev", // Replace with your actual domain
-    siteName: "Kunal Arya Portfolio",
+    siteName: "Kunal Kumar Arya Portfolio",
     images: [
       {
         url: "/logo2.jpg",
         width: 1200,
         height: 630,
-        alt: "Kunal Arya Portfolio",
+        alt: "Kunal Kumar Arya Portfolio",
       },
     ],
     locale: "en_US",
@@ -48,10 +48,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kunal Arya - Full Stack Developer",
-    description: "Portfolio website of Kunal Arya - Full Stack Developer",
+    title: "Kunal Kumar Arya - Full Stack Developer",
+    description: "Portfolio website of Kunal Kumar Arya - Full Stack Developer",
     images: ["/logo2.jpg"],
-    creator: "@kunalarya", // Replace with your Twitter handle
+    creator: "@iamkunalarya", // Replace with your Twitter handle
   },
   icons: {
     icon: [

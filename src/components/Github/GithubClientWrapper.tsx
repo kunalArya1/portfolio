@@ -1,6 +1,6 @@
 'use client';
 
-import GithubClient from './GithubClient';
+import GithubClientFixed from './GithubClientFixed';
 
 interface GithubClientWrapperProps {
   data: any;
@@ -8,7 +8,7 @@ interface GithubClientWrapperProps {
 }
 
 const GithubClientWrapper = ({ data, username }: GithubClientWrapperProps) => {
-  return <GithubClient initialData={data} username={username} />;
+  return <GithubClientFixed initialData={data} username={username} />;
 };
 
 export default GithubClientWrapper; 

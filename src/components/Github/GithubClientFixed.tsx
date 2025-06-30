@@ -41,12 +41,14 @@ interface LanguageStat {
   count: number;
 }
 
-interface GithubClientProps {
-  initialData: {
-    profile: GithubProfile;
-    repos: Repository[];
-    languageStats: LanguageStat[];
-  };
+interface GithubData {
+  profile: GithubProfile;
+  repos: Repository[];
+  languageStats: LanguageStat[];
+}
+
+interface GithubClientFixedProps {
+  initialData: GithubData;
   username: string;
 }
 
@@ -60,10 +62,35 @@ const languageColors: { [key: string]: string } = {
   "C++": "bg-purple-500",
   HTML: "bg-orange-500",
   CSS: "bg-pink-500",
-  // Add more languages as needed
+  Go: "bg-cyan-500",
+  Rust: "bg-orange-600",
+  PHP: "bg-indigo-500",
 };
 
-const GithubClient: React.FC<GithubClientProps> = ({
+// Calculate language statistics from repos
+function calculateLanguageStats(repos: Repository[]): LanguageStat[] {
+  const stats = repos.reduce((acc: { [key: string]: number }, repo) => {
+    if (repo.language) {
+      acc[repo.language] = (acc[repo.language] || 0) + 1;
+    }
+    return acc;
+  }, {});
+
+  const total = Object.values(stats).reduce((a: number, b: number) => a + b, 0);
+  if (total === 0) return [];
+
+  const percentages = Object.entries(stats)
+    .map(([lang, count]) => ({
+      language: lang,
+      percentage: Math.round(((count as number) / total) * 100),
+      count: count,
+    }))
+    .sort((a, b) => b.percentage - a.percentage);
+
+  return percentages;
+}
+
+const GithubClientFixed: React.FC<GithubClientFixedProps> = ({
   initialData,
   username,
 }) => {
@@ -74,29 +101,94 @@ const GithubClient: React.FC<GithubClientProps> = ({
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const [githubData, setGithubData] = useState<GithubData>(initialData);
+  const [fetchingFallback, setFetchingFallback] = useState(false);
   const observer = useRef<IntersectionObserver | null>(null);
   const [displayedRepos, setDisplayedRepos] = useState<Repository[]>([]);
 
-  // Debug logging
-  useEffect(() => {
-    console.log("GithubClient received data:", {
-      profileName: initialData.profile?.name,
-      reposCount: initialData.repos?.length,
-      languageStatsCount: initialData.languageStats?.length,
-    });
-  }, [initialData]);
-
   useEffect(() => {
     setMounted(true);
+    
+    // If no repos in initial data, try to fetch client-side
+    if (!initialData.repos || initialData.repos.length === 0) {
+      console.log("No repos in initial data, attempting client-side fetch");
+      fetchGithubDataClientSide();
+    }
   }, []);
 
-  // Optimize filter change effects with debouncing
+  const fetchGithubDataClientSide = async () => {
+    setFetchingFallback(true);
+    try {
+      console.log("Fetching GitHub data client-side for:", username);
+      
+      const [profileRes, reposRes] = await Promise.all([
+        fetch(`https://api.github.com/users/${username}`, {
+          headers: {
+            Accept: "application/vnd.github.v3+json",
+            "User-Agent": "portfolio-website",
+          },
+        }),
+        fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100&type=public`, {
+          headers: {
+            Accept: "application/vnd.github.v3+json",
+            "User-Agent": "portfolio-website",
+          },
+        }),
+      ]);
+
+      if (profileRes.ok && reposRes.ok) {
+        const [profileData, reposData] = await Promise.all([
+          profileRes.json(),
+          reposRes.json(),
+        ]);
+
+        console.log("Client-side fetch successful:", {
+          profile: profileData.login,
+          reposCount: reposData.length,
+        });
+
+        const repos = Array.isArray(reposData) ? reposData : [];
+        
+        let totalStars = 0;
+        let totalForks = 0;
+        for (const repo of repos) {
+          totalStars += repo.stargazers_count || 0;
+          totalForks += repo.forks_count || 0;
+        }
+
+        const languageStats = calculateLanguageStats(repos);
+
+        const newData: GithubData = {
+          profile: {
+            ...profileData,
+            total_stars: totalStars,
+            total_forks: totalForks,
+          },
+          repos,
+          languageStats,
+        };
+
+        setGithubData(newData);
+      } else {
+        console.error("Client-side fetch failed:", {
+          profileStatus: profileRes.status,
+          reposStatus: reposRes.status,
+        });
+      }
+    } catch (error) {
+      console.error("Error in client-side fetch:", error);
+    } finally {
+      setFetchingFallback(false);
+    }
+  };
+
+  // Filter change effects
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setPage(1);
       setDisplayedRepos([]);
       setHasMore(true);
-    }, 100); // Add small debounce
+    }, 100);
 
     return () => clearTimeout(timeoutId);
   }, [search, selectedLanguage, sortBy]);
@@ -112,8 +204,8 @@ const GithubClient: React.FC<GithubClientProps> = ({
           }
         },
         {
-          threshold: 0.1, // Trigger earlier for better UX
-          rootMargin: "100px", // Load more before reaching the bottom
+          threshold: 0.1,
+          rootMargin: "100px",
         }
       );
       if (node) observer.current.observe(node);
@@ -121,21 +213,13 @@ const GithubClient: React.FC<GithubClientProps> = ({
     [loading, hasMore]
   );
 
-  // Memoize filtered repositories to avoid recalculation
+  // Memoize filtered repositories
   const filteredRepos = useMemo(() => {
-    console.log("Filtering repos:", {
-      totalRepos: initialData.repos?.length || 0,
-      search,
-      selectedLanguage,
-      sortBy,
-    });
-
-    if (!initialData.repos || !Array.isArray(initialData.repos)) {
-      console.log("No repos or repos is not an array:", initialData.repos);
+    if (!githubData.repos || !Array.isArray(githubData.repos)) {
       return [];
     }
 
-    const filtered = initialData.repos
+    return githubData.repos
       .filter((repo) => {
         const matchesSearch =
           search === "" ||
@@ -164,18 +248,14 @@ const GithubClient: React.FC<GithubClientProps> = ({
             return 0;
         }
       });
+  }, [githubData.repos, search, selectedLanguage, sortBy]);
 
-    console.log("Filtered repos count:", filtered.length);
-    return filtered;
-  }, [initialData.repos, search, selectedLanguage, sortBy]);
-
-  // Optimize the displayedRepos update
+  // Update displayed repos
   useEffect(() => {
     const startIndex = 0;
     const endIndex = page * ITEMS_PER_PAGE;
     const newRepos = filteredRepos.slice(startIndex, endIndex);
 
-    // Use requestAnimationFrame for smoother updates
     const updateRepos = () => {
       setDisplayedRepos(newRepos);
       setHasMore(endIndex < filteredRepos.length);
@@ -191,7 +271,15 @@ const GithubClient: React.FC<GithubClientProps> = ({
   return (
     <div>
       {/* Profile Section */}
-      <GithubProfile profile={initialData.profile} />
+      <GithubProfile profile={githubData.profile} />
+
+      {/* Loading state for client-side fetch */}
+      {fetchingFallback && (
+        <div className="text-center py-10">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500 mx-auto mb-4"></div>
+          <p className="text-white">Loading repositories...</p>
+        </div>
+      )}
 
       {/* Two Column Layout */}
       <div className="mt-10 flex flex-col lg:flex-row gap-8">
@@ -207,19 +295,19 @@ const GithubClient: React.FC<GithubClientProps> = ({
               <div className="flex items-center justify-between bg-[#0a0a0a] p-3 rounded-lg">
                 <span className="text-gray-400">Total Repositories</span>
                 <span className="text-purple-500 font-semibold">
-                  {initialData.profile.public_repos}
+                  {githubData.profile.public_repos}
                 </span>
               </div>
               <div className="flex items-center justify-between bg-[#0a0a0a] p-3 rounded-lg">
                 <span className="text-gray-400">Total Stars</span>
                 <span className="text-purple-500 font-semibold">
-                  {initialData.profile.total_stars}
+                  {githubData.profile.total_stars}
                 </span>
               </div>
               <div className="flex items-center justify-between bg-[#0a0a0a] p-3 rounded-lg">
                 <span className="text-gray-400">Total Forks</span>
                 <span className="text-purple-500 font-semibold">
-                  {initialData.profile.total_forks}
+                  {githubData.profile.total_forks}
                 </span>
               </div>
             </div>
@@ -232,26 +320,24 @@ const GithubClient: React.FC<GithubClientProps> = ({
               Languages
             </h3>
             <div className="space-y-3">
-              {initialData.languageStats.map(
-                ({ language, percentage, count }) => (
-                  <div key={language} className="space-y-1">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-400">{language}</span>
-                      <span className="text-gray-400">
-                        {percentage}% ({count})
-                      </span>
-                    </div>
-                    <div className="h-2 bg-[#0a0a0a] rounded-full overflow-hidden">
-                      <div
-                        className={`h-full ${
-                          languageColors[language] || "bg-gray-500"
-                        }`}
-                        style={{ width: `${percentage}%` }}
-                      />
-                    </div>
+              {githubData.languageStats.map(({ language, percentage, count }) => (
+                <div key={language} className="space-y-1">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-400">{language}</span>
+                    <span className="text-gray-400">
+                      {percentage}% ({count})
+                    </span>
                   </div>
-                )
-              )}
+                  <div className="h-2 bg-[#0a0a0a] rounded-full overflow-hidden">
+                    <div
+                      className={`h-full ${
+                        languageColors[language] || "bg-gray-500"
+                      }`}
+                      style={{ width: `${percentage}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -280,7 +366,7 @@ const GithubClient: React.FC<GithubClientProps> = ({
                 className="bg-[#111111] border border-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
               >
                 <option value="">All Languages</option>
-                {initialData.languageStats.map(({ language }) => (
+                {githubData.languageStats.map(({ language }) => (
                   <option key={language} value={language}>
                     {language}
                   </option>
@@ -324,7 +410,7 @@ const GithubClient: React.FC<GithubClientProps> = ({
           )}
 
           {/* No Results */}
-          {!loading && filteredRepos.length === 0 && initialData.repos && initialData.repos.length > 0 && (
+          {!loading && !fetchingFallback && filteredRepos.length === 0 && githubData.repos && githubData.repos.length > 0 && (
             <div className="text-center py-20">
               <h3 className="text-2xl font-semibold text-gray-400 mb-2">
                 No repositories found
@@ -336,7 +422,7 @@ const GithubClient: React.FC<GithubClientProps> = ({
           )}
 
           {/* No Data */}
-          {!loading && (!initialData.repos || initialData.repos.length === 0) && (
+          {!loading && !fetchingFallback && (!githubData.repos || githubData.repos.length === 0) && (
             <div className="text-center py-20">
               <h3 className="text-2xl font-semibold text-gray-400 mb-2">
                 No repositories available
@@ -345,7 +431,7 @@ const GithubClient: React.FC<GithubClientProps> = ({
                 Unable to load repositories at this time
               </p>
               <button 
-                onClick={() => window.location.reload()} 
+                onClick={fetchGithubDataClientSide} 
                 className="mt-4 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
               >
                 Try Again
@@ -358,4 +444,4 @@ const GithubClient: React.FC<GithubClientProps> = ({
   );
 };
 
-export default GithubClient;
+export default GithubClientFixed;

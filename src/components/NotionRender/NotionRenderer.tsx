@@ -17,18 +17,18 @@ import 'prismjs/themes/prism-tomorrow.css';
 // Optional katex support
 import 'katex/dist/katex.min.css';
 
-// Dynamic imports for optional components
-const Pdf = dynamic(
-  () => import('react-notion-x/build/third-party/pdf').then((mod) => mod.Pdf),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="flex items-center justify-center p-4 bg-gray-100 rounded-lg">
-        <p className="text-gray-600">Loading PDF viewer...</p>
-      </div>
-    ),
-  }
-);
+// Commenting out problematic dynamic imports temporarily
+// const Pdf = dynamic(
+//   () => import('react-notion-x/build/third-party/pdf').then((mod) => mod.Pdf),
+//   {
+//     ssr: false,
+//     loading: () => (
+//       <div className="flex items-center justify-center p-4 bg-gray-100 rounded-lg">
+//         <p className="text-gray-600">Loading PDF viewer...</p>
+//       </div>
+//     ),
+//   }
+// );
 
 interface NotionRendererProps {
   recordMap: ExtendedRecordMap;
@@ -53,7 +53,7 @@ const NotionRenderer: React.FC<NotionRendererProps> = ({ recordMap }) => {
           Code,
           Collection,
           Equation,
-          Pdf,
+          // Pdf, // Temporarily removed to fix build issue
           Modal
         }}
         darkMode={true}
